@@ -16,10 +16,23 @@ const openai = new OpenAI({
 
 const runPrompt = async() => {
     const prompt = `
+                    Dairy input
+                    This is the daily report about kid 민수.
+                    오늘 유치원에서 민수가 가지고 놀던 기차를 친구 유진이에게 빼앗겼습니다.
 
-        This is diary of 5 year old kid: 내가 제일 좋아하는 장난감 기차를 유진이가 뺏어갔다. 유진이가 미웠다. 유진이는 왜 그랬을까?
-        Summarize the diary and analye the feeling of kid today. Then turn diary and feeling into music generation prompt.
-        Summarization of the diary and feeling analysis should be returned in Korean. Return response in the following parable JSON format.
+                    Summarize and analyze
+                    Summarize the diary and analyze the feeling of kid today. 
+                    Write it in a kind and nice teacher's tone that talks to the kid, naturally.
+                    The sentences have to be compact and easy to understand. 
+                    Use the kid’s name rather than you.
+
+                    1. Describe the situation of the kid today. Start with calling kid’s name. Don’t tell the emotion, only tell the situation.
+                    2. Tell the kid about the one feeling that the kid might have felt.
+                    3. Ask the kid to make that feeling into emotion on their face together.
+
+                    Music generation prompt
+                    Then turn diary and feeling into music generation prompt.
+                    Summarization of the diary and feeling analysis should be returned in Korean. Return response in the following parable JSON format.
         {
             "S": "summry",
             "F": "feeling",
