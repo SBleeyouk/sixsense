@@ -55,4 +55,8 @@ const runPrompt = async() => {
     console.log("Music Generation Prompt: ", parsedResponse.M)
 }
 
-module.exports.openAIresponse = runPrompt;
+//console에 실행결과 찍으려면 아래 코드 실행
+//runPrompt();
+
+//다른 파일에 GPT 돌린 결과를 넘겨주는 코드
+module.exports.openAIresponse = runPrompt();
