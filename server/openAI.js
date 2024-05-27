@@ -1,62 +1,83 @@
-/**
-openAI api 이용 페이지
-1. runPrompt: 일기 데이터 기반 감정 분석, 음악 생성 prompt 생성
-2. prompt에서 summary와 감정 분석한 걸로 선생님 문구 만들어 tts 연결해야 함.
-3. 음악 생성된 것 음악 생성 모델과 연결
- */
+const { OpenAI } = require('openai');
+const dotenv = require('dotenv');
 
-const { OpenAI } = require("openai");
-const dotenv = require("dotenv");
-
-dotenv.config()
+dotenv.config();
 
 const openai = new OpenAI({
-    apiKey: process.env.API_KEY,
+  apiKey: process.env.API_KEY,
 });
 
-const runPrompt = async() => {
-    const prompt = `
-                    Dairy input
-                    This is the daily report about kid 민수.
-                    오늘 유치원에서 민수가 가지고 놀던 기차를 친구 유진이에게 빼앗겼습니다.
+const generateResponse = async (diary) => {
+  const messages = [
+    {
+      role: "user",
+      content: `This is the daily report about kid: ${diary}
 
-                    Summarize and analyze
-                    Summarize the diary and analyze the feeling of kid today. 
-                    Write it in a kind and nice teacher's tone that talks to the kid, naturally.
-                    The sentences have to be compact and easy to understand. 
-                    Use the kid’s name rather than you.
+      Summarize the diary and analyze the feeling of the kid today. Write it in a kind and nice teacher's tone that talks to the kid, naturally. The sentences have to be compact and easy to understand. Use the kid’s name rather than you.
 
-                    1. Describe the situation of the kid today. Start with calling kid’s name. Don’t tell the emotion, only tell the situation.
-                    2. Tell the kid about the one feeling that the kid might have felt.
-                    3. Ask the kid to make that feeling into emotion on their face together.
+      1. Describe the situation of the kid today. Start with calling the kid’s name. Don’t tell the emotion, only tell the situation.
+      2. Tell the kid about one feeling that the kid might have felt. Available feelings are: “좋은, 기쁜, 재미있는, 반가운, 행복한, 즐거운, 고마운, 사랑하는, 신나는, 웃는, 맛있는, 놀란, 대단한, 멋진, 싫은, 화가 난, 짜증나는, 위험한, 조심하는, 무서운, 두려운, 미운, 심심한, 부끄러운, 당황한, 창피한, 민망한, 불편한, 답답한, 슬픈, 아픈, 실망한, 섭섭한”
+      3. Ask the kid to express that feeling on their face together.
 
-                    Music generation prompt
-                    Then turn diary and feeling into music generation prompt.
-                    Summarization of the diary and feeling analysis should be returned in Korean. Return response in the following parable JSON format.
-        {
-            "S": "summry",
-            "F": "feeling",
-            "M": "music-prompt"
-        }
-    `;
+      Summary of the diary and feeling analysis must be returned in Korean. Return the response in the following JSON format.
+      {
+        "S": "summary",
+        "F": "feeling",
+        "Q": "question to kid"
+      }`
+    }
+  ];
 
-    const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        prompt: prompt,
-        maxTokens: 2048,
-        temperature: 1,
+  const textResponse = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: messages,
+    max_tokens: 2048,
+    temperature: 1,
+  });
+
+  const parsableJSONresponse = textResponse.choices[0].message.content;
+  const parsedResponse = JSON.parse(parsableJSONresponse);
+
+  const imagePrompt = `Create a 3D cartoon-style illustration based on the following diary entry. Do not include text inside the illustration:"${diary}" The illustration should capture the emotion "${parsedResponse.F}".`;
+
+  let imageUrl = "";
+  try {
+    const imageResponse = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: imagePrompt,
+      n: 1,
+      size: "1024x1024",
     });
+    imageUrl = imageResponse.data[0].url;
+  } catch (imageError) {
+    console.error('Error generating image:', imageError);
+  }
 
-    parsableJSONresponse = response.data.choices[0].text;
-    const parsedResponse = JSON.parse(parsableJSONresponse);
+  const musicPrompt = `Diary Entry: ${diary}
+  Feeling: "${parsedResponse.F}"
+  Music Prompt: "Generate a [describe music characteristics based on feeling and diary entry]. For example, generate a lively and joyful instrumental track with playful rhythms. Edo25 major g melodies that sound triumphant and cinematic, leading up to a crescendo that resolves in a 9th harmonic."`;
 
-    console.log("Summarize: ", parsedResponse.S)
-    console.log("Sentiment: ", parsedResponse.F)
-    console.log("Music Generation Prompt: ", parsedResponse.M)
-}
+  const musicPromptResponse = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "user",
+        content: musicPrompt
+      }
+    ],
+    max_tokens: 150,
+    temperature: 0.7,
+  });
 
-//console에 실행결과 찍으려면 아래 코드 실행
-//runPrompt();
+  const musicPromptText = musicPromptResponse.choices[0].message.content;
 
-//다른 파일에 GPT 돌린 결과를 넘겨주는 코드
-module.exports.openAIresponse = runPrompt();
+  return {
+    summary: parsedResponse.S,
+    feeling: parsedResponse.F,
+    questionToKid: parsedResponse.Q,
+    imageUrl: imageUrl,
+    musicPrompt: musicPromptText
+  };
+};
+
+module.exports = { generateResponse };
