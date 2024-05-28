@@ -15,7 +15,7 @@ const generateResponse = async (diary) => {
 
       Summarize the diary and analyze the feeling of the kid today. Write it in a kind and nice teacher's tone that talks to the kid, naturally. The sentences have to be compact and easy to understand. Use the kid’s name rather than you.
 
-      1. Describe the situation of the kid today. Start with calling the kid’s name. Don’t tell the emotion, only tell the situation.
+      1. Describe the situation of the kid today. Start with calling the kid’s name. Don’t tell the emotion, only tell the situation. End the sentence with '했구나.'
       2. Tell the kid about one feeling that the kid might have felt. Available feelings are: “좋은, 기쁜, 재미있는, 반가운, 행복한, 즐거운, 고마운, 사랑하는, 신나는, 웃는, 맛있는, 놀란, 대단한, 멋진, 싫은, 화가 난, 짜증나는, 위험한, 조심하는, 무서운, 두려운, 미운, 심심한, 부끄러운, 당황한, 창피한, 민망한, 불편한, 답답한, 슬픈, 아픈, 실망한, 섭섭한”
       3. Ask the kid to express that feeling on their face together.
 

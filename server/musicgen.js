@@ -29,7 +29,7 @@ async function runReplicate(prompt) {
       }
     );
     console.log(output);
-    return output[0]; // Ensure the output (music URL) is returned
+    return output; // Ensure the output (music URL) is returned
   } catch (error) {
     console.error('Error generating music:', error);
     throw error;
