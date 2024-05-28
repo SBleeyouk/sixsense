@@ -13,12 +13,17 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .App {
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1440px;
+  width: 1024px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 24px 32px 24px;
   flex: 1;
 }
 
@@ -30,41 +35,79 @@ header {
 .sub-title{
   display: flex;
   justify-content: space-between; 
-  padding-bottom: 5vh;
+  margin-top: 50px;
+}
+
+.sub-title h3 {
+  font-family: 'Sagak-sagak';
+  font-size: 1.5rem;
+}
+
+.weatherbox{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+
 }
 
 .date{
   font-family: 'Sagak-sagak';
 }
 
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.weather {
+  width: 50px;
+  animation: rotate 4s linear infinite;
+}
+
 .input-section {
-  position: fixed;
   bottom: 60px;
-  width: 100%;
   display: flex;
-  padding: 10px;
   background-color: #FCF9F0;
-  border-top: 1px solid #ccc;
 }
 
 .input-section textarea {
-  width: 70%;
+  width: 100%;
   height: 100px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
+  padding: 16px;
+  border-width: 2px 2px 4px 2px;
+  border-style: solid;
+  border-color: #000;
+  border-radius: 10px;
+  font-family: 'Sagak-sagak';
+  font-size: 1.3em;
   outline: none;
 }
 
+.input-section textarea::placeholder{
+  font-family: 'Sagak-sagak';
+  font-size:1.3rem;
+}
+
 .input-section button {
+  width: 100px;
   margin-left: 10px;
-  padding: 10px 20px;
-  background-color: #ffce00;
-  border: none;
-  border-radius: 5px;
+  padding: 10px;
+  background-color: #FCF9F0;
+  border-width: 2px 2px 4px 2px;
+  border-style: solid;
+  border-color: #000;
+  border-radius: 10px;
   font-size: 1em;
   cursor: pointer;
+}
+
+.input-section .add-button:hover{
+  background-color: #ffce00;
 }
 
 .input-section button:disabled {
@@ -72,11 +115,26 @@ header {
   cursor: not-allowed;
 }
 
+.input-section .add-button {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.input-section .add-button img{
+  width: 45px;
+}
+
+.input-section .next-button {
+  background-color: #ffce00;
+}
+
+.input-section .next-button img{
+  width: 40px;
+}
+
 .next-button {
-  position: fixed;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
   padding: 10px 20px;
   background-color: #ffce00;
   border: none;
@@ -92,21 +150,32 @@ header {
 
 .diary-boxes {
   display: flex;
+  height: 42vh;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 24px;
+  margin: 32px 0px;
 }
 
 .diary-box {
   position: relative;
-  width: 200px;
-  height: 300px;
+  width: 30%;
+  height: 100%;
+  border: 2px solid #000;
+  background-color: #FFFDF8;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
   font-family: 'Sagak-sagak';
   transition: transform 0.3s ease;
-  background: url('../ui/diary-box.png') no-repeat center center / cover;
+  background: url('../ui/diary-box.png') no-repeat top center / cover;
+}
+
+.loadingDiv{
+    display: flex;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .load-div{
@@ -153,14 +222,15 @@ header {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #ff6b6b;
+  background:none;
   border: none;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 1em;
   cursor: pointer;
   padding: 5px 10px;
   display: none;
+}
+
+.diary-box button .deleteIcon {
+  width: 20px;
 }
 
 .diary-box:hover button {
@@ -275,6 +345,7 @@ audio {
   font-weight: 700;
   background-color: #ffce00;
 }
+
 
 
 
