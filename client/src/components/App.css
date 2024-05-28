@@ -221,7 +221,7 @@ header {
 .carousel-text {
   max-width: 400px;
   text-align: left;
-  font-size: 3em;
+  font-size: 1.2em;
 }
 
 .carousel-text h2 {
@@ -252,10 +252,25 @@ header {
 
 .training-section {
   margin-top: 20px;
+  font-family: 'Sagak-sagak';
+  font-size: 1.2rem;
 }
 
 .training-section h2 {
   margin-bottom: 20px;
+}
+
+.audioVisual{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  z-index: -100;
+}
+
+.audioVisual-2{
+  position: absolute;
+  top: 20%;
+  z-index: -100;
 }
 
 .music-playing{
@@ -271,7 +286,6 @@ audio {
 }
 
 .feeling{
-  font-family: 'Sagak-sagak';
   font-weight: 700;
   background-color: #ffce00;
 }
