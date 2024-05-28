@@ -4,6 +4,10 @@ import './App.css';
 import Header from './header';
 import FaceTracking from './FaceTracking';
 import loadingImg from '../ui/loading.gif';
+import weather from '../ui/sun.png';
+import buttonIcon from '../ui/arrow.svg';
+import buttonIcon2 from '../ui/complete.svg';
+import deleteIcon from '../ui/delete.svg';
 import AudioVisualizer from './audioVisualizer';
 
 function App() {
@@ -15,7 +19,7 @@ function App() {
   const [musicLoading, setMusicLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [page, setPage] = useState('input');
+  const [page, setPage] = useState('intro');
   const [showTraining, setShowTraining] = useState(false);
   const [today, setToday] = useState('');
   const audioRef = useRef(null);
@@ -43,14 +47,14 @@ function App() {
     setPage('loading');
 
     try {
-      const response = await axios.post('http://localhost:5000/getResponses', { diaries });
+      const response = await axios.post('http://localhost:8000/getResponses', { diaries });
       setResponses(response.data);
       setLoading(false);
       setPage('results');
 
       // Trigger music generation after displaying initial responses
       setMusicLoading(true);
-      const musicResponse = await axios.post('http://localhost:5000/getMusic', { responses: response.data });
+      const musicResponse = await axios.post('http://localhost:8000/getMusic', { responses: response.data });
       setMusicResponses(musicResponse.data);
       setMusicLoading(false);
     } catch (error) {
@@ -87,15 +91,33 @@ function App() {
   }, [page, currentIndex, musicResponses]);
 
   return (
+    <>
+    <div className='headerdiv'>
+    <Header />
+    </div>
+    
     <div className="App">
-      <Header />
+    {page === 'intro' && ( // 첫 페이지
+        <div className="intro-page">
+          <h1>환영합니다!</h1>
+          <p>오늘의 일기를 작성하고 감정을 표현해보세요.</p>
+          <button className="start-button" onClick={() => setPage('input')}>시작하기</button>
+        </div>
+      )}
       {page === 'input' && (
         <>
+          <div className="sub-title">
+            <h2 className="date">{today}</h2>
+            <div className="weatherbox">
+              <h3>날씨</h3>
+              <img src={weather} alt="sunny" className="weather"/>
+            </div>
+          </div>
           <div className="diary-boxes">
             {diaries.map((diary, index) => (
               <div key={index} className="diary-box">
                 <p>{diary}</p>
-                <button onClick={() => handleDeleteDiary(index)}>삭제</button>
+                <button onClick={() => handleDeleteDiary(index)}><img src={deleteIcon} alt="삭제" className="deleteIcon"/></button>
               </div>
             ))}
           </div>
@@ -105,20 +127,27 @@ function App() {
               onChange={(e) => setDiaryInput(e.target.value)}
               placeholder="지수의 하루를 작성해주세요."
             />
-            <button onClick={handleAddDiary}>추가하기</button>
+            <button className="add-button" onClick={handleAddDiary}><img src={buttonIcon} alt="추가하기" className="addIcon"/></button>
+            <button className="next-button" onClick={handleNext} disabled={diaries.length === 0}><img src={buttonIcon2} alt="작성완료" className="completeIcon"/></button>
           </div>
-          <button className="next-button" onClick={handleNext} disabled={diaries.length === 0}>작성 완료</button>
         </>
       )}
 
       {page === 'loading' && (
-        <div>
+        <div className='loadingDiv'>
           <img className='load-div' src={loadingImg} alt="Loading..." />
-      </div>
+        </div>
       )}
 
       {page === 'results' && responses.length > 0 && (
         <div className="carousel">
+          <div className="sub-title">
+            <h2 className="date">{today}</h2>
+            <div className="weatherbox">
+              <h3>날씨</h3>
+              <img src={weather} alt="sunny" className="weather"/>
+            </div>
+          </div>
           <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
           <div className="carousel-content">
             <div className="carousel-image">
@@ -144,6 +173,7 @@ function App() {
       )}
 
       {page === 'training' && showTraining && (
+        
         <div className="training-section">
           <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br /><br></br>함께 그 감정을 표현해볼까?</p>
           <div className="music-playing">
@@ -186,6 +216,7 @@ function App() {
 
       {error && <div>Error: {error}</div>}
     </div>
+  </>
   );
 }
 
