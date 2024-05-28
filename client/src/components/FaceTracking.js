@@ -1,9 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import './FaceTracking.css'; // Ensure to create and import a CSS file for styles
 
 const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining }) => {
   const audioRef = useRef(null);
   const mindarScriptRef = useRef(null);
   const containerRef = useRef(null);
+  const timeoutRef = useRef(null);
+  const intervalRef = useRef(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   // Function to initialize the 3D rendering and face tracking
   const initializeFaceTracking = () => {
@@ -12,6 +16,9 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining }) => {
     container.id = 'training-container';
     container.style.width = '100vw';
     container.style.height = '80vh';
+    container.style.transition = 'background 0.5s ease';
+    container.style.zIndex = '-100';
+    container.classList.add('wave-background');
     document.body.appendChild(container);
     containerRef.current = container;
 
@@ -144,8 +151,36 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining }) => {
       audio.src = musicResponses[currentIndex].musicUrl;
       audio.loop = true; // Set the music to loop
       console.log('Music URL:', musicResponses[currentIndex].musicUrl); // Log the music URL
+      audio.play();
+
+      // Set a timeout to stop training after 30 seconds
+      timeoutRef.current = setTimeout(() => {
+        handleStopTraining();
+      }, 30000); // 30 seconds
+
+      // Start interval to update elapsed time every second
+      intervalRef.current = setInterval(() => {
+        setElapsedTime(prevTime => prevTime + 1);
+      }, 1000);
     }
-  }, [musicResponses, currentIndex]);
+
+    return () => {
+      // Clear timeout and interval if dependencies change
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [musicResponses, currentIndex, handleStopTraining]);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const percentage = (elapsedTime / 30) * 100;
+      containerRef.current.style.background = `linear-gradient(to top, #FFA338 ${percentage}%, transparent ${percentage}%)`;
+    }
+  }, [elapsedTime]);
 
   useEffect(() => {
     return () => {
@@ -163,9 +198,8 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining }) => {
     <>
       <div className="face-tracking-container">
         <video id="video" style={{ display: 'none' }}></video>
-        <audio ref={audioRef} controls />
+        <audio ref={audioRef} />
       </div>
-      
     </>
   );
 };

@@ -4,6 +4,7 @@ import './App.css';
 import Header from './header';
 import FaceTracking from './FaceTracking';
 import loadingImg from '../ui/loading.gif';
+import AudioVisualizer from './audioVisualizer';
 
 function App() {
   const [diaryInput, setDiaryInput] = useState('');
@@ -88,10 +89,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="sub-title">
-        <h2 className="date">{today}</h2>
-        <h3>날씨 <span role="img" aria-label="sunny">☀️</span></h3>
-      </div>
       {page === 'input' && (
         <>
           <div className="diary-boxes">
@@ -148,10 +145,12 @@ function App() {
 
       {page === 'training' && showTraining && (
         <div className="training-section">
-          <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br />함께 그 감정을 표현해볼까?</p>
+          <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br /><br></br>함께 그 감정을 표현해볼까?</p>
           <div className="music-playing">
             <FaceTracking musicResponses={musicResponses} currentIndex={currentIndex} handleStopTraining={handleStopTraining} />
-            <button className="next-button" onClick={handleStopTraining}>오늘의 훈련 끝내기</button>
+            <div className = 'audioVisual'>
+              <AudioVisualizer audioSrc={musicResponses[currentIndex]?.musicUrl} />
+            </div>
           </div>
         </div>
       )}
@@ -166,7 +165,10 @@ function App() {
             <div className="carousel-text">
               <p>{responses[currentIndex].summary}</p>
               <p>오늘의 감정어: {responses[currentIndex].feeling}</p>
-              <audio ref={audioRef} controls src={musicResponses[currentIndex]?.musicUrl} />
+              <audio ref={audioRef} src={musicResponses[currentIndex]?.musicUrl} />
+            </div>
+            <div className = 'audioVisual-2'>
+              <AudioVisualizer audioSrc={musicResponses[currentIndex]?.musicUrl} />
             </div>
           </div>
           <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
