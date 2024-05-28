@@ -5,7 +5,7 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f8f4e3;
+  background-color: #FCF9F0;
   color: #333;
   text-align: center;
   margin: 0;
@@ -30,6 +30,7 @@ header {
 .sub-title{
   display: flex;
   justify-content: space-between; 
+  padding-bottom: 5vh;
 }
 
 .date{
@@ -42,7 +43,7 @@ header {
   width: 100%;
   display: flex;
   padding: 10px;
-  background-color: #f8f4e3;
+  background-color: #FCF9F0;
   border-top: 1px solid #ccc;
 }
 
@@ -53,6 +54,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1em;
+  outline: none;
 }
 
 .input-section button {
@@ -107,6 +109,28 @@ header {
   background: url('../ui/diary-box.png') no-repeat center center / cover;
 }
 
+.load-div{
+  height:60vh;
+}
+
+.carousel-text{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 500px;
+  height: 400px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Sagak-sagak';
+  background: url('../ui/result-bg.png') no-repeat center center / cover;
+  text-align: center;
+  color: #333;
+  padding: 10px;
+  justify-content: center;
+  font-size: 1.2em;
+  align-items: center;
+}
+
 .diary-box:hover {
   transform: translateY(-5px);
 }
@@ -119,10 +143,9 @@ header {
   width: 80%;
   text-align: center;
   color: #333;
-  background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 1.2em;
   margin: 0;
 }
 
@@ -198,6 +221,7 @@ header {
 .carousel-text {
   max-width: 400px;
   text-align: left;
+  font-size: 3em;
 }
 
 .carousel-text h2 {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Header from './header';
 import FaceTracking from './FaceTracking';
+import loadingImg from '../ui/loading.gif';
 
 function App() {
   const [diaryInput, setDiaryInput] = useState('');
@@ -73,8 +74,16 @@ function App() {
 
   const handleStopTraining = () => {
     setShowTraining(false);
-    setPage('input');
+    setPage('final-result');
   };
+
+  useEffect(() => {
+    if (page === 'final-result' && musicResponses.length > 0) {
+      const audio = audioRef.current;
+      audio.src = musicResponses[currentIndex].musicUrl;
+      audio.play();
+    }
+  }, [page, currentIndex, musicResponses]);
 
   return (
     <div className="App">
@@ -97,7 +106,7 @@ function App() {
             <textarea
               value={diaryInput}
               onChange={(e) => setDiaryInput(e.target.value)}
-              placeholder="지원이의 하루를 작성해주세요."
+              placeholder="지수의 하루를 작성해주세요."
             />
             <button onClick={handleAddDiary}>추가하기</button>
           </div>
@@ -106,7 +115,9 @@ function App() {
       )}
 
       {page === 'loading' && (
-        <div>지원이의 그림 일기를 생성 중입니다.</div>
+        <div>
+          <img className='load-div' src={loadingImg} alt="Loading..." />
+      </div>
       )}
 
       {page === 'results' && responses.length > 0 && (
@@ -117,10 +128,8 @@ function App() {
               <img src={responses[currentIndex].imageUrl} alt="Generated" />
             </div>
             <div className="carousel-text">
-              <h2>Summary:</h2>
               <p>{responses[currentIndex].summary}</p>
-              <h2>Feeling:</h2>
-              <p>{responses[currentIndex].feeling}</p>
+              <p>오늘의 감정어: {responses[currentIndex].feeling}</p>
             </div>
           </div>
           <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
@@ -139,10 +148,36 @@ function App() {
 
       {page === 'training' && showTraining && (
         <div className="training-section">
-          <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br></br>함께 그 감정을 표현해볼까?</p>
-          <div className = "music-playing">
-            <FaceTracking musicResponses={musicResponses} currentIndex={currentIndex} />
+          <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br />함께 그 감정을 표현해볼까?</p>
+          <div className="music-playing">
+            <FaceTracking musicResponses={musicResponses} currentIndex={currentIndex} handleStopTraining={handleStopTraining} />
             <button className="next-button" onClick={handleStopTraining}>오늘의 훈련 끝내기</button>
+          </div>
+        </div>
+      )}
+
+      {page === 'final-result' && responses.length > 0 && (
+        <div className="carousel">
+          <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
+          <div className="carousel-content">
+            <div className="carousel-image">
+              <img src={responses[currentIndex].imageUrl} alt="Generated" />
+            </div>
+            <div className="carousel-text">
+              <p>{responses[currentIndex].summary}</p>
+              <p>오늘의 감정어: {responses[currentIndex].feeling}</p>
+              <audio ref={audioRef} controls src={musicResponses[currentIndex]?.musicUrl} />
+            </div>
+          </div>
+          <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
+          <div className="carousel-nav">
+            {responses.map((_, index) => (
+              <button
+                key={index}
+                className={index === currentIndex ? 'active' : ''}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
           </div>
         </div>
       )}
