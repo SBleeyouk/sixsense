@@ -1,22 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 
-const FaceTracking = ({ musicResponses, currentIndex }) => {
+const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining }) => {
   const audioRef = useRef(null);
+  const mindarScriptRef = useRef(null);
+  const containerRef = useRef(null);
 
-  useEffect(() => {
-    if (musicResponses.length > 0) {
-      const audio = audioRef.current;
-      audio.src = musicResponses[currentIndex].musicUrl;
-      audio.loop = true; // Set the music to loop
-      console.log('Music URL:', musicResponses[currentIndex].musicUrl); // Log the music URL
-    }
-
+  // Function to initialize the 3D rendering and face tracking
+  const initializeFaceTracking = () => {
     // Create the container div
     const container = document.createElement('div');
     container.id = 'training-container';
     container.style.width = '100vw';
     container.style.height = '80vh';
     document.body.appendChild(container);
+    containerRef.current = container;
 
     // Load the MindARThree script dynamically
     const mindarScript = document.createElement('script');
@@ -30,6 +27,7 @@ const FaceTracking = ({ musicResponses, currentIndex }) => {
         constructor() {
           this.gltf = null;
           this.morphTargetMeshes = [];
+          this.scene = null;
         }
         async init() {
           const url = "./glb/try.glb";
@@ -50,6 +48,7 @@ const FaceTracking = ({ musicResponses, currentIndex }) => {
             this.morphTargetMeshes.push(mesh);
           });
           this.gltf = gltf;
+          this.scene = gltf.scene;
         }
 
         updateBlendshapes(blendshapes) {
@@ -99,9 +98,14 @@ const FaceTracking = ({ musicResponses, currentIndex }) => {
 
         const anchor = mindarThree.addAnchor(1);
 
+        // Clean up any existing model
+        if (avatar && avatar.scene) {
+          scene.remove(avatar.scene);
+        }
+
         avatar = new Avatar();
         await avatar.init();
-        avatar.gltf.scene.scale.set(2.5, 2.5, 2.5);
+        avatar.gltf.scene.scale.set(2, 2, 2);
         avatar.gltf.scene.position.z = -0.5;
         avatar.gltf.scene.position.y = 0.1;
         anchor.group.add(avatar.gltf.scene);
@@ -126,18 +130,42 @@ const FaceTracking = ({ musicResponses, currentIndex }) => {
       start();
     `;
     document.body.appendChild(mindarScript);
+    mindarScriptRef.current = mindarScript;
+  };
 
+  useEffect(() => {
+    // Initialize face tracking only once
+    initializeFaceTracking();
+  }, []);
+
+  useEffect(() => {
+    if (musicResponses.length > 0) {
+      const audio = audioRef.current;
+      audio.src = musicResponses[currentIndex].musicUrl;
+      audio.loop = true; // Set the music to loop
+      console.log('Music URL:', musicResponses[currentIndex].musicUrl); // Log the music URL
+    }
+  }, [musicResponses, currentIndex]);
+
+  useEffect(() => {
     return () => {
       // Clean up the container div and script when component unmounts
-      document.body.removeChild(container);
-      document.body.removeChild(mindarScript);
+      if (containerRef.current) {
+        containerRef.current.remove();
+      }
+      if (mindarScriptRef.current) {
+        mindarScriptRef.current.remove();
+      }
     };
-  }, [musicResponses, currentIndex]);
+  }, []);
 
   return (
     <>
-      <video id="video" style={{ display: 'none' }}></video>
-      <audio ref={audioRef} controls />
+      <div className="face-tracking-container">
+        <video id="video" style={{ display: 'none' }}></video>
+        <audio ref={audioRef} controls />
+      </div>
+      
     </>
   );
 };
