@@ -409,17 +409,17 @@ header {
 }
 
 .carousel-nav button {
-  background-color: #ffce00;
-  border: none;
+  background: #FCF9F0;
+  border: 1px solid #000;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
-  border-bottom: #000;
 }
 
 .carousel-nav button.active {
   background-color: #FF6738;
+  border-bottom: 2px solid #000;
 }
 
 .carousel-content {
@@ -427,8 +427,27 @@ header {
   justify-content: center;
   align-items: center;
   position: relative;
-  height:60vh;
+  height: 60vh;
   gap: 4%;
+}
+
+.carousel-preview {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+  left: 10px; /* Adjust the position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.carousel-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0.5; /* Make the preview image semi-transparent */
 }
 
 .carousel-image {
@@ -438,6 +457,7 @@ header {
   flex-shrink: 0;
   background: url('../ui/circle.png') no-repeat center center / cover;
   position: relative;
+  z-index: 1;
 }
 
 .carousel-image img {
@@ -447,28 +467,46 @@ header {
   border-radius: 50%;
 }
 
-.result-textarea{
-  display: block;
+.result-textarea {
+  display: flex;
   height: 300px;
   width: 400px;
+  position: relative; /* Adjusted for positioning arrows inside */
 }
 
 .carousel-text {
   width: 100%;
   height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
   background-color: #FFFDF8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
   font-family: 'Sagak-sagak';
   border: 1px solid #000;
   background: url('../ui/result-bg.png') no-repeat top center / cover;
+  position: relative; /* Adjusted for positioning arrows inside */
+}
+.feeling-tag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
 }
 
 .carousel-text h2 {
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-family: 'Arial', sans-serif;
 }
 
 .carousel-text p {
-  margin: 5px 0;
+  margin: 5px;
+}
+
+.feeling-tag p{
+  margin: 4px;
+  padding: 4px;
+  background-color: #ffce00;
 }
 
 .carousel-arrow {
@@ -479,15 +517,17 @@ header {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1
 }
 
 .carousel-arrow.left {
-  left: -50px;
+  left: 10px; /* Adjusted to be inside the result-textarea */
 }
 
 .carousel-arrow.right {
-  right: -50px;
+  right: 10px; /* Adjusted to be inside the result-textarea */
 }
+
 
 .training-section {
   margin-top: 20px;

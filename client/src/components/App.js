@@ -266,28 +266,41 @@ function App() {
             </div>
           </div>
           <div className="carousel-content">
-            <div className="carousel-image">
-              <img src={responses[currentIndex].imageUrl} alt="Generated" />
+          {responses.length > 1 && (
+            <div className="carousel-preview left">
+              <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
             </div>
-            <div className = "result-textarea">
-              <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
-                <div className="carousel-text">
-                <div className="carousel-nav">
-                    {responses.map((_, index) => (
-                      <button id="carousel-btn"
-                        key={index}
-                        className={index === currentIndex ? 'active' : ''}
-                        onClick={() => setCurrentIndex(index)}
-                      />
-                    ))}
-                </div>
-                  <p>{responses[currentIndex].summary}</p>
-                  <p>오늘의 감정어: {responses[currentIndex].feeling}</p>
-                </div>
-              <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
-            </div>
+          )}
+          <div className="carousel-image">
+            <img src={responses[currentIndex].imageUrl} alt="Generated" />
           </div>
-          <button className="next-button" onClick={handleTraining}>오늘의 훈련 시작</button>
+          {responses.length > 2 && (
+            <div className="carousel-preview right">
+              <img src={responses[(currentIndex + 1) % responses.length].imageUrl} alt="Next" />
+            </div>
+          )}
+          <div className="result-textarea">
+            <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
+            <div className="carousel-text">
+              <div className="carousel-nav">
+                {responses.map((_, index) => (
+                  <button id="carousel-btn"
+                    key={index}
+                    className={index === currentIndex ? 'active' : ''}
+                    onClick={() => setCurrentIndex(index)}
+                  />
+                ))}
+              </div>
+              <div className="feeling-tag">
+                <h2>오늘의 감정어:</h2>
+                <p>{responses[currentIndex].feeling}</p>
+              </div>
+              <p>{responses[currentIndex].summary}</p>
+            </div>
+            <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
+          </div>
+        </div>
+          <button className="view-button" onClick={handleTraining}>오늘의 훈련 시작</button>
         </div>
       )}
 
