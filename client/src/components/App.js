@@ -203,7 +203,7 @@ function App() {
                   >
                     {index + 1 === 12 && (
                       <div className="overlay">
-                        <button className="overlay-button" onClick={handleStartClick}>시작하기</button>
+                        <button className="overlay-button" onClick={handleStartClick}>작성하기</button>
                       </div>
                     )}
                   </div>
