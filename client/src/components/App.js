@@ -148,25 +148,27 @@ function App() {
               <img src={weather} alt="sunny" className="weather"/>
             </div>
           </div>
-          <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
           <div className="carousel-content">
             <div className="carousel-image">
               <img src={responses[currentIndex].imageUrl} alt="Generated" />
             </div>
-            <div className="carousel-text">
-              <p>{responses[currentIndex].summary}</p>
-              <p>오늘의 감정어: {responses[currentIndex].feeling}</p>
+            <div className = "result-textarea">
+              <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
+                <div className="carousel-text">
+                <div className="carousel-nav">
+                    {responses.map((_, index) => (
+                      <button id="carousel-btn"
+                        key={index}
+                        className={index === currentIndex ? 'active' : ''}
+                        onClick={() => setCurrentIndex(index)}
+                      />
+                    ))}
+                </div>
+                  <p>{responses[currentIndex].summary}</p>
+                  <p>오늘의 감정어: {responses[currentIndex].feeling}</p>
+                </div>
+              <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
             </div>
-          </div>
-          <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
-          <div className="carousel-nav">
-            {responses.map((_, index) => (
-              <button
-                key={index}
-                className={index === currentIndex ? 'active' : ''}
-                onClick={() => setCurrentIndex(index)}
-              />
-            ))}
           </div>
           <button className="next-button" onClick={handleTraining}>오늘의 훈련 시작</button>
         </div>
