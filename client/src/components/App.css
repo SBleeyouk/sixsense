@@ -246,30 +246,33 @@ header {
 
 .carousel-nav {
   display: flex;
+  position: absolute;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  top: 20px;
 }
 
 .carousel-nav button {
   background-color: #ffce00;
   border: none;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  border-bottom: #000;
 }
 
 .carousel-nav button.active {
-  background-color: #ff6b6b;
+  background-color: #FF6738;
 }
 
 .carousel-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
   position: relative;
+  height:60vh;
+  gap: 4%;
 }
 
 .carousel-image {
@@ -288,10 +291,20 @@ header {
   border-radius: 50%;
 }
 
+.result-textarea{
+  display: block;
+  height: 300px;
+  width: 400px;
+}
+
 .carousel-text {
-  max-width: 400px;
-  text-align: left;
-  font-size: 1.2em;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFDF8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
+  font-family: 'Sagak-sagak';
+  border: 1px solid #000;
+  background: url('../ui/result-bg.png') no-repeat top center / cover;
 }
 
 .carousel-text h2 {
