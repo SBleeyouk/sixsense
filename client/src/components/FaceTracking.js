@@ -178,6 +178,7 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining }) => {
   useEffect(() => {
     if (containerRef.current) {
       const percentage = (elapsedTime / 30) * 100;
+      //이게 배경 색깔 차오르도록 하는 코드!!
       containerRef.current.style.background = `linear-gradient(to top, #FFA338 ${percentage}%, transparent ${percentage}%)`;
     }
   }, [elapsedTime]);
