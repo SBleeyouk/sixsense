@@ -10,6 +10,22 @@ import buttonIcon2 from '../ui/complete.svg';
 import deleteIcon from '../ui/delete.svg';
 import AudioVisualizer from './audioVisualizer';
 
+
+import c1 from '../ui/exciting.png';
+import c2 from '../ui/angry.png';
+import c3 from '../ui/surprised.png';
+import c4 from '../ui/embarassed.png';
+import c5 from '../ui/sad.png';
+import c6 from '../ui/exciting.png';
+import c7 from '../ui/angry.png';
+import c8 from '../ui/surprised.png';
+import c9 from '../ui/embarassed.png';
+import c10 from '../ui/sad.png';
+import c11 from '../ui/exciting.png';
+import c12 from '../ui/main.png';
+import c13 from '../ui/all.png';
+import c14 from '../ui/all.png';
+
 function App() {
   const [diaryInput, setDiaryInput] = useState('');
   const [diaries, setDiaries] = useState([]);
@@ -24,11 +40,65 @@ function App() {
   const [today, setToday] = useState('');
   const audioRef = useRef(null);
 
+  const gap = 60; // 간격
+  const screenWidth = window.innerWidth;
+  const itemWidth = (screenWidth - 4 * gap) / 4;
+  const initialOffset = screenWidth / 2 - (itemWidth + gap) * 6.75; // 12번 요소가 중앙에 오도록 설정
+  
+
+  const [carouselOffset, setCarouselOffset] = useState(initialOffset);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
+  const imageUrls = [
+    c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14
+  ];
+
   useEffect(() => {
     const date = new Date();
     const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
     setToday(formattedDate);
   }, []);
+
+  
+  const handleDragStart = (e) => {
+    setDragStartX(e.clientX);
+    setDragging(true);
+  };
+  
+  const handleDragEnd = () => {
+    setDragging(false);
+  };
+  
+  const handleDrag = (e) => {
+    if (!dragging) return;
+    const dragDistance = e.clientX - dragStartX;
+  
+    setCarouselOffset((prevOffset) => prevOffset + dragDistance);
+    setDragStartX(e.clientX);
+  };
+  
+  const handlePrevCarousel = () => {
+    setCarouselOffset((prevOffset) => prevOffset + itemWidth + gap);
+  };
+  
+  const handleNextCarousel = () => {
+    setCarouselOffset((prevOffset) => prevOffset - itemWidth - gap);
+  };
+
+  const handleStartClick = () => {
+    setPage('input');
+  };
+  
+
+  const handleViewPreviousDiaries = () => {
+    setPage('page1');
+  };
+  
+  const handleViewLearningOutcomes = () => {
+    setPage('page2');
+  };
+
 
   const handleAddDiary = () => {
     if (diaryInput.trim()) {
@@ -97,13 +167,60 @@ function App() {
     </div>
     
     <div className="App">
-    {page === 'intro' && ( // 첫 페이지
+      {page === 'intro' && (
         <div className="intro-page">
-          <h1>환영합니다!</h1>
-          <p>오늘의 일기를 작성하고 감정을 표현해보세요.</p>
-          <button className="start-button" onClick={() => setPage('input')}>시작하기</button>
+          <h1>오늘 하루는 어땠나요?!</h1>
+          <div 
+            className="carousel-container" 
+            onMouseDown={handleDragStart}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
+            onMouseMove={handleDrag}
+          >
+            <button className="carousel-arrow left" onClick={handlePrevCarousel}>❮</button>
+            <div className="carousel-content" style={{ transform: `translateX(${carouselOffset}px)` }}>
+              {[...Array(14).keys()].map((_, index) => (
+                <div 
+                  key={index} 
+                  className="carousel-item"
+                  style={{ 
+                    width: index + 1 === 12 ? `${itemWidth * 1.2}px` : `${itemWidth}px`, 
+                    height: index + 1 === 12 ? `${itemWidth * 1.2}px` : `${itemWidth}px` 
+                  }} // Adjust margin and width
+                  onClick={index + 1 === 12 ? handleStartClick : undefined} // 12번 요소 클릭 시 페이지 전환
+                >
+                  <div 
+                    className={`circle ${index + 1 === 12 ? 'pulse' : ''}`}
+                    style={{ 
+                      width: index + 1 === 12 ? `${itemWidth * 1.2}px` : `${itemWidth}px`, 
+                      height: index + 1 === 12 ? `${itemWidth * 1.2}px` : `${itemWidth}px`,
+                      backgroundImage: `url(${imageUrls[index]})`, 
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      border: (index + 1 === 13 || index + 1 === 14) ? '2px dashed #000' : '2px solid #000',
+                      pointerEvents: (index + 1 === 13 || index + 1 === 14) ? 'none' : 'cursor' 
+                    }}
+                  >
+                    {index + 1 === 12 && (
+                      <div className="overlay">
+                        <button className="overlay-button" onClick={handleStartClick}>시작하기</button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="carousel-arrow right" onClick={handleNextCarousel}>❯</button>
+
+            <div className="button-container">
+            <button className="view-button" onClick={handleViewPreviousDiaries}>이전 일기 보러가기</button>
+            <button className="view-button" onClick={handleViewLearningOutcomes}>학습 성과 보러가기</button>
+          </div>
+          </div>
         </div>
       )}
+
+
       {page === 'input' && (
         <>
           <div className="sub-title">
