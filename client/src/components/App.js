@@ -257,28 +257,34 @@ function App() {
       )}
 
       {page === 'results' && responses.length > 0 && (
+        <>
+        <div className="sub-title">
+          <h2 className="date">{today}</h2>
+          <div className="weatherbox">
+            <h3>날씨</h3>
+            <img src={weather} alt="sunny" className="weather"/>
+          </div>
+        </div>
         <div className="carousel">
-          <div className="sub-title">
-            <h2 className="date">{today}</h2>
-            <div className="weatherbox">
-              <h3>날씨</h3>
-              <img src={weather} alt="sunny" className="weather"/>
-            </div>
-          </div>
           <div className="carousel-content">
-          {responses.length > 1 && (
-            <div className="carousel-preview left">
-              <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
+
+          <div className='carousel-box'>
+            {responses.length > 1 && (
+              <div className="carousel-preview left">
+                <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
+              </div>
+            )}
+
+            
+            <div className="carousel-image">
+              <img src={responses[currentIndex].imageUrl} alt="Generated" />
             </div>
-          )}
-          <div className="carousel-image">
-            <img src={responses[currentIndex].imageUrl} alt="Generated" />
+            {responses.length > 2 && (
+              <div className="carousel-preview right">
+                <img src={responses[(currentIndex + 1) % responses.length].imageUrl} alt="Next" />
+              </div>
+            )}
           </div>
-          {responses.length > 2 && (
-            <div className="carousel-preview right">
-              <img src={responses[(currentIndex + 1) % responses.length].imageUrl} alt="Next" />
-            </div>
-          )}
           <div className="result-textarea">
             <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
             <div className="carousel-text">
@@ -291,17 +297,19 @@ function App() {
                   />
                 ))}
               </div>
+              <p>{responses[currentIndex].summary}</p>
               <div className="feeling-tag">
                 <h2>오늘의 감정어:</h2>
                 <p>{responses[currentIndex].feeling}</p>
               </div>
-              <p>{responses[currentIndex].summary}</p>
+              
             </div>
             <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
           </div>
         </div>
           <button className="view-button" onClick={handleTraining}>오늘의 훈련 시작</button>
         </div>
+        </>
       )}
 
       {page === 'training' && showTraining && (
