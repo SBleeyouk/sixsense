@@ -10,7 +10,6 @@ import buttonIcon2 from '../ui/complete.svg';
 import deleteIcon from '../ui/delete.svg';
 import AudioVisualizer from './audioVisualizer';
 
-
 import c1 from '../ui/exciting.png';
 import c2 from '../ui/angry.png';
 import c3 from '../ui/surprised.png';
@@ -157,6 +156,18 @@ function App() {
       const audio = audioRef.current;
       audio.src = musicResponses[currentIndex].musicUrl;
       audio.play();
+      const sendDataToServer = async (data) => {
+        try {
+          const response = await axios.post('http://localhost:8000/processVideo', data);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
+      
+      // Example usage
+      const data = { key: 'value' };
+      sendDataToServer(data);
     }
   }, [page, currentIndex, musicResponses]);
 
@@ -318,9 +329,6 @@ function App() {
           <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br /><br></br>함께 그 감정을 표현해볼까?</p>
           <div className="music-playing">
             <FaceTracking musicResponses={musicResponses} currentIndex={currentIndex} handleStopTraining={handleStopTraining} />
-            <div className = 'audioVisual'>
-              <AudioVisualizer audioSrc={musicResponses[currentIndex]?.musicUrl} />
-            </div>
           </div>
         </div>
       )}
