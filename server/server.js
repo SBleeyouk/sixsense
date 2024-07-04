@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const axios = require('axios');  // Add axios for making HTTP requests
 const { generateResponse } = require('./openAI');
 const { runReplicate } = require('./musicgen');
 
@@ -35,6 +36,16 @@ app.post('/getMusic', async (req, res) => {
       results.push({ ...response, musicUrl: music });
     }
     res.json(results);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// New route to forward requests to the Flask server
+app.post('/processVideo', async (req, res) => {
+  try {
+    const response = await axios.post('http://localhost:5000/api/process', req.body);  // Change URL as needed
+    res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
