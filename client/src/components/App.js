@@ -38,7 +38,7 @@ function App() {
   const [page, setPage] = useState('intro');
   const [showTraining, setShowTraining] = useState(false);
   const [today, setToday] = useState('');
-  const [disparity, setDisparity] = useState(null);
+  const [disparity, setDisparity] = useState(0);
   const audioRef = useRef(null);
   const socketRef = useRef(null);  // Add ref for socket
 
@@ -57,6 +57,25 @@ function App() {
     const date = new Date();
     const formattedDate = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
     setToday(formattedDate);
+  }, []);
+
+  useEffect(() => {
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+    }
+    socketRef.current = io('http://localhost:5000'); // Connect to the WebSocket server
+
+    // Listen for disparity updates
+    socketRef.current.on('video_processed', (data) => {
+      setDisparity(data.disparity);
+    });
+
+    return () => {
+      // Clean up the socket connection
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+      }
+    };
   }, []);
 
   const handleDragStart = (e) => {
@@ -142,46 +161,55 @@ function App() {
     setShowTraining(true);
 
     try {
-        const feeling = 'happiness';
-        const response = await axios.post('http://localhost:8000/processVideo', { feeling });
-        console.log('Response from processVideo API:', response.data);
+      const feeling = 'happiness';
+      const response = await axios.post('http://localhost:8000/processVideo', { feeling });
+      console.log('Response from processVideo API:', response.data);
     } catch (error) {
-        console.error('Error while calling processVideo API:', error.message);
+      console.error('Error while calling processVideo API:', error.message);
     }
-
-    // Connect to the WebSocket server
-    socketRef.current = io('http://localhost:5000');
-    socketRef.current.on('video_processed', (data) => {
-        console.log('Disparity update:', data.disparity); // This line will print the disparity
-        setDisparity(data.disparity);
-    });
   };
 
   useEffect(() => {
-      let timeout;
+    let timeout;
+    let interval;
+    let startTime = null;
 
+    if (disparity !== null) {
       if (disparity < 20) {
-          timeout = setTimeout(() => {
-              setPage('final-result');
-          }, 10000);
-          if (socketRef.current) {
-              socketRef.current.emit('stop_video', { message: 'Stop video processing' });
-          }
-      }
+        if (startTime === null) {
+          startTime = new Date().getTime();
+        }
 
-      return () => {
-          if (timeout) {
-              clearTimeout(timeout);
+        interval = setInterval(() => {
+          const currentTime = new Date().getTime();
+          if (currentTime - startTime >= 10000) {  // 10초 경과 확인
+            clearInterval(interval);
+            setPage('final-result');
+            if (socketRef.current) {
+              socketRef.current.emit('stop_video', { message: 'Stop video processing' });
+            }
           }
-      };
+        }, 1000);  // 1초마다 체크
+      } else {
+        clearInterval(interval);
+        startTime = null;
+      }
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [disparity]);
 
   const handleStopTraining = () => {
-      setShowTraining(false);
-      setPage('final-result');
-      if (socketRef.current) {
-          socketRef.current.disconnect();
-      }
+    setShowTraining(false);
+    setPage('final-result');
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+    }
   };
 
   useEffect(() => {
@@ -343,7 +371,11 @@ function App() {
       <div className="training-section">
         <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br /><br></br>함께 그 감정을 표현해볼까?</p>
         <div className="music-playing">
-          <FaceTracking musicResponses={musicResponses} currentIndex={currentIndex} handleStopTraining={() => setShowTraining(false)} />
+          <FaceTracking 
+          musicResponses={musicResponses}
+          currentIndex={currentIndex}
+          handleStopTraining={() => setShowTraining(false)} 
+          disparity={disparity}/>
         </div>
       </div>
     )}
