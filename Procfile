@@ -1,1 +1,2 @@
-web: sh setup.sh
+web: python python-backend/app.py
+web: node server/server.js
