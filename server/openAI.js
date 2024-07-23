@@ -17,19 +17,21 @@ const generateResponse = async (diary) => {
 
       1. Describe the situation of the kid today. Start with calling the kid’s name. Don’t tell the emotion, only tell the situation. Talk like mothers do.
       2. Tell the kid about one feeling that the kid might have felt. Available feelings are: “좋은, 기쁜, 재미있는, 반가운, 행복한, 즐거운, 고마운, 사랑하는, 신나는, 웃는, 맛있는, 놀란, 대단한, 멋진, 싫은, 화가 난, 짜증나는, 위험한, 조심하는, 무서운, 두려운, 미운, 심심한, 부끄러운, 당황한, 창피한, 민망한, 불편한, 답답한, 슬픈, 아픈, 실망한, 섭섭한”
-      3. Ask the kid to express that feeling on their face together.
+      3. Classify the feeling into the most appropriate category among happiness, anger, fear, disgust, sadness, and surprise, and return emotion category name. Return value must be between [happiness, anger, fear, disgust, sadness, surprise] in english, nothing else.
+      4. Ask the kid to express that feeling on their face together.
 
       Summary of the diary and feeling analysis must be returned in Korean. Return the response in the following JSON format.
       {
         "S": "summary",
         "F": "feeling",
+        "E":"emotion category name",
         "Q": "question to kid"
       }`
     }
   ];
 
   const textResponse = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4-turbo",
     messages: messages,
     max_tokens: 2048,
     temperature: 1,
@@ -71,10 +73,12 @@ const generateResponse = async (diary) => {
   });
 
   const musicPromptText = musicPromptResponse.choices[0].message.content;
+  console.log(parsedResponse.E);
 
   return {
     summary: parsedResponse.S,
     feeling: parsedResponse.F,
+    emotion: parsedResponse.E,
     questionToKid: parsedResponse.Q,
     imageUrl: imageUrl,
     musicPrompt: musicPromptText

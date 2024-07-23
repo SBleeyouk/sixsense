@@ -53,6 +53,17 @@ app.post('/processVideo', async (req, res) => {
   }
 });
 
+app.post('/stopVideoProcessing', async (req, res) => {
+  try {
+    const response = await axios.post('http://localhost:5000/api/stop');  // Ensure this URL matches your Flask server URL for stopping
+    console.log('Response from Flask server (stop):', response.data);  // Log the response data to the console
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error while stopping video processing:', error.message);  // Log the error message to the console
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
