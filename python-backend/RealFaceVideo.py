@@ -4,15 +4,17 @@ import numpy as np
 from scipy.spatial import procrustes
 import os
 import time
+from threading import Event
 
 class RealFaceVideo:
-    def __init__(self, video_path, socketio):
+    def __init__(self, video_path, socketio, stop_event):
         # Convert relative path to absolute path
         if not os.path.isabs(video_path):
             video_path = os.path.abspath(video_path)
         self.video_path = video_path
         self.socketio = socketio
-        self.stop_signal = False
+        self.stop_event = stop_event
+        self.start_time = None  # Initialize start_time here
 
         self.mp_face_mesh = mp.solutions.face_mesh
         self.face_mesh = self.mp_face_mesh.FaceMesh(static_image_mode=False,
@@ -32,7 +34,7 @@ class RealFaceVideo:
         self.socketio.on_event('stop_video', self.stop_video)
 
     def stop_video(self, data):
-        self.stop_signal = True
+        self.stop_event.set()
 
     def preprocess_eye(self, eye_image):
         if len(eye_image.shape) == 3:
@@ -54,20 +56,15 @@ class RealFaceVideo:
 
     def process_video(self):
         while self.cap.isOpened() and self.video_cap.isOpened():
-            if self.stop_signal:
+            if self.stop_event.is_set():
+                print("Stop event set, breaking the loop.")
                 break
 
             success, image = self.cap.read()
             success_video, video_frame = self.video_cap.read()
 
-            if not success:
+            if not success or not success_video:
                 break
-            
-            if not success_video:
-                self.video_cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Reset video capture to the first frame
-                success_video, video_frame = self.video_cap.read()
-                if not success_video:
-                    break
 
             # Flip the image from the webcam
             image = cv2.flip(image, 1)
@@ -183,14 +180,14 @@ class RealFaceVideo:
 
             if results_video.multi_face_landmarks:
                 for face_landmarks in results_video.multi_face_landmarks:
-                    landmarks = self.get_landmarks(face_landmarks, video_frame.shape)
-                    face_data.append(landmarks)
-                    self.mp_drawing.draw_landmarks(
-                        image=video_frame,
-                        landmark_list=face_landmarks,
-                        connections=self.mp_face_mesh.FACEMESH_TESSELATION,
-                        landmark_drawing_spec=self.drawing_spec,
-                        connection_drawing_spec=self.drawing_spec)
+                                    landmarks = self.get_landmarks(face_landmarks, video_frame.shape)
+                                    face_data.append(landmarks)
+                                    self.mp_drawing.draw_landmarks(
+                                        image=video_frame,
+                                        landmark_list=face_landmarks,
+                                        connections=self.mp_face_mesh.FACEMESH_TESSELATION,
+                                        landmark_drawing_spec=self.drawing_spec,
+                                        connection_drawing_spec=self.drawing_spec)
 
             if len(face_data) == 2:
                 _, _, disparity = procrustes(face_data[0], face_data[1])
@@ -204,8 +201,5 @@ class RealFaceVideo:
                 print(result)
                 self.socketio.emit('video_processed', result)
 
-                #if disparity_value < 10:  # Optionally, stop if disparity is less than 10
-                #   self.stop_signal = True
-
-            if cv2.waitKey(5) & 0xFF == 27:
-                break
+                if cv2.waitKey(5) & 0xFF == 27:
+                    break

@@ -1,28 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './FaceTracking.css'; // Ensure to create and import a CSS file for styles
+import ReactPlayer from 'react-player/lazy';
+import './FaceTracking.css';
 
-const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining, disparity }) => {
+const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining, disparity}) => {
   const audioRef = useRef(null);
   const mindarScriptRef = useRef(null);
   const containerRef = useRef(null);
-  const timeoutRef = useRef(null);
   const intervalRef = useRef(null);
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [videoUrl, setVideoUrl] = useState('');
 
-  // Function to initialize the 3D rendering and face tracking
   const initializeFaceTracking = () => {
-    // Create the container div
     const container = document.createElement('div');
     container.id = 'training-container';
-    container.style.width = '100vw';
-    container.style.height = '80vh';
-    container.style.transition = 'background 0.5s ease';
-    container.style.zIndex = '-100';
-    container.classList.add('wave-background');
+    container.className = 'background-color';
     document.body.appendChild(container);
     containerRef.current = container;
 
-    // Load the MindARThree script dynamically
     const mindarScript = document.createElement('script');
     mindarScript.type = 'module';
     mindarScript.innerHTML = `
@@ -141,7 +135,6 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining, dispar
   };
 
   useEffect(() => {
-    // Initialize face tracking only once
     initializeFaceTracking();
   }, []);
 
@@ -149,52 +142,49 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining, dispar
     if (musicResponses.length > 0) {
       const audio = audioRef.current;
       audio.src = musicResponses[currentIndex].musicUrl;
-      audio.loop = true; // Set the music to loop
       console.log('Music URL:', musicResponses[currentIndex].musicUrl); // Log the music URL
       audio.play();
-      /*
-      // Set a timeout to stop training after 30 seconds
-      timeoutRef.current = setTimeout(() => {
-        handleStopTraining();
-      }, 30000); // 30 seconds
-*/
-      // Start interval to update elapsed time every second
+
       intervalRef.current = setInterval(() => {
         setElapsedTime(prevTime => prevTime + 1);
       }, 1000);
     }
 
     return () => {
-      /*
-      // Clear timeout and interval if dependencies change
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-        */
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
   }, [musicResponses, currentIndex]);
-/*
-  useEffect(() => {
-    if (containerRef.current) {
-      const percentage = (elapsedTime / 30) * 100;
-      //이게 배경 색깔 차오르도록 하는 코드!!
-      containerRef.current.style.background = `linear-gradient(to top, #FFA338 ${percentage}%, transparent ${percentage}%)`;
+
+  const interpolateColor = (color1, color2, factor) => {
+    const result = color1.slice();
+    for (let i = 0; i < 3; i++) {
+      result[i] = Math.round(result[i] + factor * (color2[i] - result[i]));
     }
-  }, [elapsedTime]);
-*/
+    return result;
+  };
+
+  const rgbToHex = (rgb) => {
+    return '#' + rgb.map(value => {
+      const hex = value.toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    }).join('');
+  };
+
   useEffect(() => {
     if (containerRef.current) {
-      const waveHeight = 100 - disparity; // Assuming disparity is in a suitable range for this calculation
-      containerRef.current.style.background = `linear-gradient(to top, #FFA338 ${waveHeight}%, transparent ${waveHeight}%)`;
+      const startColor = [252, 249, 240]; // RGB for #FCF9F0
+      const endColor = [255, 163, 56]; // RGB for #FFA338
+      const interpolatedColor = interpolateColor(startColor, endColor, 1 - disparity);
+      const hexColor = rgbToHex(interpolatedColor);
+      containerRef.current.style.backgroundColor = hexColor;
+      console.log('Disparity:', disparity, 'Color:', hexColor); // Log the disparity value and color
     }
   }, [disparity]);
 
   useEffect(() => {
     return () => {
-      // Clean up the container div and script when component unmounts
       if (containerRef.current) {
         containerRef.current.remove();
       }
@@ -205,12 +195,9 @@ const FaceTracking = ({ musicResponses, currentIndex, handleStopTraining, dispar
   }, []);
 
   return (
-    <>
-      <div className="face-tracking-container">
-        <video id="video" style={{ display: 'none' }}></video>
-        <audio ref={audioRef} />
-      </div>
-    </>
+    <div className="face-tracking-container">
+      <audio ref={audioRef}/>
+    </div>
   );
 };
 
