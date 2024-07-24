@@ -1,3 +1,6 @@
 python-backend/myenv/lib/python3.12/site-packages/jaxlib/mlir/_mlir_libs/libjaxlib_mlir_capi.dylib filter=lfs diff=lfs merge=lfs -text
 python-backend/myenv/lib/python3.12/site-packages/mediapipe/python/_framework_bindings.cpython-312-darwin.so filter=lfs diff=lfs merge=lfs -text
 python-backend/myenv/lib/python3.12/site-packages/jaxlib/xla_extension.so filter=lfs diff=lfs merge=lfs -text
+python-backend/path/to/venv/lib/python3.12/site-packages/jaxlib/mlir/_mlir_libs/libjaxlib_mlir_capi.dylib filter=lfs diff=lfs merge=lfs -text
+python-backend/path/to/venv/lib/python3.12/site-packages/mediapipe/python/_framework_bindings.cpython-312-darwin.so filter=lfs diff=lfs merge=lfs -text
+python-backend/path/to/venv/lib/python3.12/site-packages/jaxlib/xla_extension.so filter=lfs diff=lfs merge=lfs -text
