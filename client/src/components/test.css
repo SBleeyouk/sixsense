@@ -1,0 +1,328 @@
+@font-face {
+    font-family: "Sagak-sagak"; 
+    src: url("../font/Sagak-sagak.ttf");
+}
+  
+@font-face {
+    font-family: 'HSJiptokki-Round';
+    src: url("../font/HSJiptokki-Round.ttf");
+}
+  
+@font-face {
+    font-family: 'HSJiptokki-Black';
+    src: url("../font/HSJiptokki-Black.ttf");
+}
+
+.test {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.introCon {
+    flex: 1;
+    padding: 4rem 3.5rem 6rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.introTitle {
+    margin: 0;
+    font-family: 'Sagak-sagak';
+    font-size: 2.5rem;
+    line-height: 150%;
+    color: #4B3327;
+}
+
+.introSub {
+    font-family: 'Sagak-sagak';
+    font-size: 1.3rem;
+    color: #4B3327;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 100%;
+    padding: 0 1.5rem;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.emotionButton {
+    flex: 1;
+    height: 58px;
+    padding: 0.5rem;
+    text-align: center;
+    font-family: 'Sagak-sagak';
+    font-size: 1.3rem;
+    cursor: pointer;
+    border: 2px solid #4B3527;
+    border-bottom-width: 5px;
+    border-radius: 999px;
+    color: #4B3527;
+}
+
+.emotionButton:not(:disabled):hover {
+    transform: scale(1.05); 
+}
+
+.emotionButton:disabled {
+    cursor: not-allowed;
+}
+
+.happy {
+    background-color: #FE6C4B;
+}
+
+.sad {
+    background-color: #FFCE5D;
+}
+
+.excited {
+    background-color: #C7E584;
+}
+
+.angry {
+    background-color: #84D6E5;
+}
+
+.surprised {
+    background-color: #EBA3FF;
+}
+
+.neutral {
+    background-color: #DBDBDB;
+}
+
+.testC {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.num {
+    width: 2rem;
+}
+
+.stepCon {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 4rem 0rem 4rem;
+}
+
+.quest {
+    font-family: 'Sagak-sagak';
+    font-size: 1.8rem;
+    color: #4B3327;
+
+}
+
+
+.resultTitle {
+    font-family: 'Sagak-sagak';
+    font-size: 2.2rem;
+    color: #4B3327;
+
+}
+
+.story {
+    margin: 0;
+    width: 50%;
+    font-family: 'Sagak-sagak';
+    font-size: 1.1rem;
+    line-height: 150%;
+    color: #4B3327;
+
+}
+
+.nextButton {
+    width: 160px;
+    height: 58px;
+    padding: 0.5rem;
+    text-align: center;
+    font-family: 'Sagak-sagak';
+    font-size: 1.3rem;
+    cursor: pointer;
+    border: 2px solid #4B3527;
+    border-bottom-width: 5px;
+    border-radius: 999px;
+    color: #4B3527;
+    background-color: #F8F4F3;
+}
+
+.nextButton:hover {
+    background-color: #FFCE5D;
+}
+
+/*step1*/
+#rotatingImage {
+    position: absolute;
+    width: 85%;
+    top: 54vh;
+    animation: spin 3s ease-out infinite;
+}
+
+#rotatingArrow {
+    z-index: 10000;
+    width: 40px;
+    position: absolute;
+    bottom: 20px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.imgCon {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem 0;
+}
+
+.textCon {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 3rem 0;
+    gap: 50%;
+}
+
+.imgCon img {
+    border-radius: 10px;
+    border: 2px solid rgba(75, 53, 39, 0.4);
+    transition: border-color 0.3s;
+    height: 28vh;
+    width: 28vh;
+    object-fit: cover;
+}
+
+.textItem {
+    background-color: #FAFAFA;
+    font-family: 'Sagak-sagak';
+    font-size: 1.3rem;
+    color: #4B3327;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    border-radius: 10px;
+    border: 2px solid rgba(75, 53, 39, 0.4);
+    transition: border-color 0.3s;
+    height: 15vh;
+    width: 15vh;
+    margin-bottom: 2rem;
+    z-index: 1000;
+}
+
+.textItem2 {
+    background-color: #FAFAFA;
+    font-family: 'Sagak-sagak';
+    font-size: 1.1rem;
+    color: #4B3327;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    border-radius: 10px;
+    border: 2px solid rgba(75, 53, 39, 0.4);
+    transition: border-color 0.3s;
+    height: 28vh;
+    width: 28vh;
+}
+
+.imgCon img:hover,
+.imgCon img.active {
+    border-color: rgba(75, 53, 39, 1);
+}
+
+.textItem:hover, 
+.textItem.active,
+.textItem2:hover,
+.textItem2.active {
+    background-color: #FFCE5D;
+    border-color: rgba(75, 53, 39, 1);
+}
+
+.btnCon {
+    width: 100%;
+    text-align: right;
+    z-index: 1000;
+}
+
+.qimg {
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.qimg img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/*result*/
+.scoreCon {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #4B3527;
+    border-radius: 50%;
+}
+
+.line {
+    height: 0.2px;
+    width: 40px;
+    border-top: 1px dotted #4B3527; 
+}
+
+.resultCon{
+    height: 100vh;
+    padding: 0 0 4rem 0;
+}
+
+.resultimgCon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resultImg {
+    width: 30%;
+
+}
+
+.resultButton {
+    width: 50%;
+    height: 55px;
+    padding: 0.5rem;
+    text-align: center;
+    font-family: 'Sagak-sagak';
+    font-size: 1.3rem;
+    cursor: pointer;
+    border: 2px solid #F8F4F3;
+    border-bottom-width: 5px;
+    border-radius: 999px;
+    color: #F8F4F3;
+    background-color: #4B3527;
+    box-shadow: 0 4px 4px 0px #0000004a;
+}

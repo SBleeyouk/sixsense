@@ -31,7 +31,7 @@ const generateResponse = async (diary) => {
   ];
 
   const textResponse = await openai.chat.completions.create({
-    model: "gpt-4-turbo",
+    model: "gpt-3.5-turbo",
     messages: messages,
     max_tokens: 2048,
     temperature: 1,
@@ -39,7 +39,6 @@ const generateResponse = async (diary) => {
 
   const parsableJSONresponse = textResponse.choices[0].message.content;
   const parsedResponse = JSON.parse(parsableJSONresponse);
-
   const imagePrompt = `Create a 3D cartoon-style illustration based on the following diary entry of girl 지수. Do not include text inside the illustration: "${diary}" The illustration should capture the emotion "${parsedResponse.F}". 지수 is wearing a green shirt.`;
 
   let imageUrl = "";
