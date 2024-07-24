@@ -1,5 +1,5 @@
 .env
 node_modules
 .venv
-..bfg-report/2024-07-24/11-34-07
+.bfg-report/
 bfg.jar
