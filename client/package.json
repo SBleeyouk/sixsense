@@ -4,6 +4,7 @@
   "main": "App.js",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,10 +16,8 @@
     "react-player": "^2.16.0",
     "react-scripts": "5.0.0",
     "react-webcam": "^7.2.0",
-    "serve": "^14.0.1",
     "socket.io-client": "^4.7.5",
-    "web-vitals": "^2.1.4",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "serve -s build",
@@ -48,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
   }
 }

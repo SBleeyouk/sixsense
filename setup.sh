@@ -22,4 +22,4 @@ npm start &
 
 # client 폴더로 이동하여 빌드된 React 앱 서빙
 cd ../client
-serve -s build
+npx serve -s build
