@@ -23,14 +23,16 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
-    "start": "serve -s build --openssl-legacy-provider",
-    "build": "react-scripts build --openssl-legacy-provider",
+    "start": "serve -s build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm install && npm run build",
+    "prestart": "node --openssl-legacy-provider ./node_modules/.bin/react-scripts start",
+    "prebuild": "node --openssl-legacy-provider ./node_modules/.bin/react-scripts build"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.x"
   },
   "proxy": "http://localhost:8000/getResponse",
   "eslintConfig": {
