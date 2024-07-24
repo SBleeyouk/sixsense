@@ -80,4 +80,5 @@ const generateResponse = async (diary) => {
   };
 };
 
+
 module.exports = { generateResponse };

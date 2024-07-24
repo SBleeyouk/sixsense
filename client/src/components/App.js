@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import Header from './header';
+import Test from './test';
 import FaceTracking from './FaceTracking';
 import loadingImg from '../ui/loading.gif';
 import weather from '../ui/sun.png';
@@ -10,22 +11,26 @@ import buttonIcon2 from '../ui/complete.svg';
 import deleteIcon from '../ui/delete.svg';
 import AudioVisualizer from './audioVisualizer';
 
-import c1 from '../ui/exciting.png';
-import c2 from '../ui/angry.png';
-import c3 from '../ui/surprised.png';
-import c4 from '../ui/embarassed.png';
-import c5 from '../ui/sad.png';
-import c6 from '../ui/exciting.png';
-import c7 from '../ui/angry.png';
-import c8 from '../ui/surprised.png';
-import c9 from '../ui/embarassed.png';
-import c10 from '../ui/sad.png';
-import c11 from '../ui/exciting.png';
+import c1 from '../ui/d1.png';
+import c2 from '../ui/d2.png';
+import c3 from '../ui/d1.png';
+import c4 from '../ui/d2.png';
+import c5 from '../ui/d1.png';
+import c6 from '../ui/d2.png';
+import c7 from '../ui/d1.png';
+import c8 from '../ui/d2.png';
+import c9 from '../ui/d1.png';
+import c10 from '../ui/d2.png';
+import c11 from '../ui/d1.png';
 import c12 from '../ui/main.png';
 import c13 from '../ui/all.png';
 import c14 from '../ui/all.png';
 
+
+import outcomeImg from '../ui/outcome.svg';
+
 function App() {
+  const [showTest, setShowTest] = useState(false);
   const [diaryInput, setDiaryInput] = useState('');
   const [diaries, setDiaries] = useState([]);
   const [responses, setResponses] = useState([]);
@@ -52,6 +57,7 @@ function App() {
   const imageUrls = [
     c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14
   ];
+
 
   useEffect(() => {
     const date = new Date();
@@ -95,7 +101,7 @@ function App() {
   };
   
   const handleViewLearningOutcomes = () => {
-    setPage('page2');
+    setPage('outcome');
   };
 
 
@@ -171,6 +177,10 @@ function App() {
     }
   }, [page, currentIndex, musicResponses]);
 
+  if (showTest) {
+    return <Test />;
+  }
+
   return (
     <>
     <div className='headerdiv'>
@@ -208,7 +218,7 @@ function App() {
                       backgroundImage: `url(${imageUrls[index]})`, 
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      border: (index + 1 === 13 || index + 1 === 14) ? '2px dashed #000' : '2px solid #000',
+                      border: (index + 1 === 13 || index + 1 === 14) ? '2px solid #4B3527' : '2px solid #4B3527',
                       pointerEvents: (index + 1 === 13 || index + 1 === 14) ? 'none' : 'cursor' 
                     }}
                   >
@@ -224,11 +234,27 @@ function App() {
             <button className="carousel-arrow right" onClick={handleNextCarousel}>❯</button>
 
             <div className="button-container">
-            <button className="view-button" onClick={handleViewPreviousDiaries}>이전 일기 보러가기</button>
+            <button className="view-button" onClick={setShowTest}>테스트 시작하기</button>
             <button className="view-button" onClick={handleViewLearningOutcomes}>학습 성과 보러가기</button>
           </div>
           </div>
         </div>
+      )}
+
+{page === 'outcome' && (
+        <>
+        <div className='titleCon'>
+          <h1 className='resultTitle'>지난 주에는 속상한 일이 많았구나?</h1>
+          <p className='story'>모든 감정어가 골고루 잘 학습되고 있네!
+          하지만 아직 놀라움이나 두려움 관련 단어들을 조금 어려워하는 거 같으니
+          다음주에는 놀라움과 두려움 관련 감정어를 더 많이 학습하면 좋을 거 같아!</p>
+        </div>
+        <div className='outcomeimgCon'>
+          <img className='outcomeImg' src={outcomeImg}/>
+
+        </div>
+          
+        </>
       )}
 
 

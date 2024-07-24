@@ -16,7 +16,7 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #FCF9F0;
+  background-color: #F8F4F3;
   color: #333;
   text-align: center;
   margin: 0;
@@ -109,7 +109,7 @@ header {
 }
 
 .intro-page .circle:hover {
-  background-color: #FFDF38;
+  background-color: #FFCE5D;
 }
 
 .intro-page .carousel-arrow {
@@ -154,10 +154,10 @@ header {
 
 .overlay-button {
   border-width: 2px 2px 5px 2px;
-  background-color: #FCF9F0;
+  background-color: #F8F4F3;
   border-style: solid;
-  border-color: #000;
-  border-radius: 15px;
+  border-color: #4B3527;
+  border-radius: 100px;
 
   padding: 10px 20px;
   font-family: 'Sagak-sagak';
@@ -179,10 +179,10 @@ header {
 .view-button {
   width: 230px;
   border-width: 2px 2px 5px 2px;
-  background-color: #FCF9F0;
+  background-color: #F8F4F3;
   border-style: solid;
-  border-color: #000;
-  border-radius: 15px;
+  border-color: #4B3527;
+  border-radius: 50px;
 
   padding: 10px 20px;
   font-family: 'Sagak-sagak';
@@ -191,7 +191,7 @@ header {
 }
 
 .view-button:hover {
-  background-color: #FFDF38;
+  background-color: #FFCE5D;
 }
 
 
@@ -228,7 +228,7 @@ header {
 .input-section {
   bottom: 60px;
   display: flex;
-  background-color: #FCF9F0;
+  background-color: #F8F4F3;
 }
 
 .input-section textarea {
@@ -253,7 +253,7 @@ header {
   width: 100px;
   margin-left: 10px;
   padding: 10px;
-  background-color: #FCF9F0;
+  background-color: #F8F4F3;
   border-width: 2px 2px 4px 2px;
   border-style: solid;
   border-color: #000;
@@ -263,7 +263,7 @@ header {
 }
 
 .input-section .add-button:hover{
-  background-color: #ffce00;
+  background-color: #FFCE5D;
 }
 
 .input-section button:disabled {
@@ -282,7 +282,7 @@ header {
 }
 
 .input-section .next-button {
-  background-color: #ffce00;
+  background-color: #FFCE5D;
 }
 
 .input-section .next-button img{
@@ -292,7 +292,7 @@ header {
 .next-button {
   bottom: 10px;
   padding: 10px 20px;
-  background-color: #ffce00;
+  background-color: #FFCE5D;
   border: none;
   border-radius: 5px;
   font-size: 1em;
@@ -418,7 +418,7 @@ header {
 }
 
 .carousel-nav button {
-  background: #FCF9F0;
+  background: #F8F4F3;
   border: 1px solid #000;
   border-radius: 50%;
   width: 16px;
@@ -531,7 +531,7 @@ audio {
 
 .feeling{
   font-weight: 700;
-  background-color: #ffce00;
+  background-color: #FFCE5D;
 }
 
 .feeling-tag{
@@ -545,7 +545,7 @@ audio {
 .feeling-tag p{
   margin: 4px;
   padding: 4px;
-  background-color: #ffce00;
+  background-color: #FFCE5D;
 }
 
 .carousel-arrow {
