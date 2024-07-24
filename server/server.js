@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -9,8 +10,12 @@ const { runReplicate } = require('./musicgen');
 const app = express();
 const API_URL = process.env.API_URL || 'http://localhost:5000';
 
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST']
+}));
+
 app.use(bodyParser.json());
-app.use(cors());
 
 app.post('/getResponses', async (req, res) => {
   const { diaries } = req.body;
