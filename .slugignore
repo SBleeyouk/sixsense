@@ -1,0 +1,19 @@
+# 루트 디렉토리의 node_modules
+node_modules/
+
+# 클라이언트 디렉토리의 node_modules
+client/node_modules/
+
+# 서버 디렉토리의 node_modules
+server/node_modules/
+
+# 기타 불필요한 파일 및 디렉토리
+*.log
+.venv/
+tests/
+docs/
+tmp/
+*.md
+__pycache__/
+*.pyc
+.env
