@@ -1,0 +1,24 @@
+.headerdiv {
+  margin: 32px 32px 0 32px;
+
+  max-width: 1440px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    position: absolute;
+    left: 50%;
+    translate: -45px;
+    max-width: 90px;
+    height: auto;
+  }
+
+  .thumImg{
+    width: 45px;
+  }
+  

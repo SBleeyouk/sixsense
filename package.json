@@ -1,0 +1,10 @@
+{
+    "name": "my-project",
+    "version": "1.0.0",
+    "scripts": {
+      "heroku-postbuild": "cd client && npm install && npm run build && cd ../server && npm install"
+    },
+    "engines": {
+      "node": ">=14.0.0"
+    }
+  }

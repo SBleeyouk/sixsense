@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="&PUBLIC_URL%/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="&PUBLIC_URL%/favicon.ico" type="image/x-icon">
+    <title>무지개</title>    
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+          "mindar-face-three": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.4/dist/mindar-face-three.prod.js"
+        }
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+      }
+      #container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+      video {
+        display: none !important; /* Hide video feed */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="%PUBLIC_URL%/script.js"></script> <!-- Reference the script -->
+  </body>
+</html>
