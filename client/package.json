@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "main": "App.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -14,6 +15,7 @@
     "react-player": "^2.16.0",
     "react-scripts": "5.0.1",
     "react-webcam": "^7.2.0",
+    "serve": "^14.0.1",
     "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4"
   },
@@ -23,6 +25,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   },
   "proxy": "http://localhost:8000/getResponse",
   "eslintConfig": {
