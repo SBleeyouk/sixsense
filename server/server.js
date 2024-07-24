@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');  // Add axios for making HTTP requests
 const { generateResponse } = require('./openAI');
+const { generateTest } = require('./openAITest');
 const { runReplicate } = require('./musicgen');
 
 const app = express();
@@ -20,6 +21,17 @@ app.post('/getResponses', async (req, res) => {
       const result = await generateResponse(diary);
       results.push(result);
     }
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/getTest', async (req, res) => {
+  const { story } = req.body;
+
+  try {
+    const results = await generateTest(story);
     res.json(results);
   } catch (error) {
     res.status(500).json({ error: error.message });
