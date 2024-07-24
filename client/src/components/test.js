@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../api/axiosInstance';
 
 import Header from './header';
 import './test.css';
@@ -25,7 +25,8 @@ const TestIntro = ({ goToStep1, disabledButtons, onButtonClick }) => {
     const handleGenerateImage = async (index) => {
         onButtonClick(index); 
         try {
-            const response = await axios.post('http://localhost:8000/getTest', { story });
+            //const response = await axiosInstance.post('http://localhost:8000/getTest', { story });
+            const response = await axiosInstance.post('/getTest', { story });
             const { results, trueFeeling, falseFeelings, trueBehavior, falseBehaviors } = response.data;
             console.log('Received images:', results); // 디버깅을 위해 응답 로그 추가
             goToStep1(results, { trueFeeling, falseFeelings, trueBehavior, falseBehaviors});
@@ -131,7 +132,7 @@ const Step1 = ({ images = [], emotions, goToStep2 }) => {
               ))}
         </div>
         <div className='btnCon'> 
-          <button className="nextButton" onClick={() => goToStep2(emotions, selectedImage)}>다음 단계 >> </button>
+          <button className="nextButton" onClick={() => goToStep2(emotions, selectedImage)}>다음 단계 </button>
         </div>
         <img id="rotatingImage" src={rotate}/>
         <img id="rotatingArrow" src={arrow}/>
@@ -183,7 +184,7 @@ const Step2 = ( { emotions, selectedImage, goToStep3 } ) => {
           <img src={selectedImage.imageUrl} alt="Selected" />
         </div>
         <div className='btnCon'> 
-          <button className="nextButton" onClick={ () => goToStep3(emotions)}>다음 단계 >> </button>
+          <button className="nextButton" onClick={ () => goToStep3(emotions)}>다음 단계 </button>
         </div>
         <img id="rotatingImage" src={rotate2}/>
         <img id="rotatingArrow" src={arrow}/>
@@ -231,7 +232,7 @@ return (
           ))}
       </div>
       <div className='btnCon'> 
-        <button className="nextButton" onClick={goToResult}>다음 단계 >> </button>
+        <button className="nextButton" onClick={goToResult}>다음 단계 </button>
       </div>
       <img id="rotatingImage" src={rotate3}/>
       <img id="rotatingArrow" src={arrow}/>

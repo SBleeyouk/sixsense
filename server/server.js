@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const axios = require('axios');  // Add axios for making HTTP requests
+const axios = require('axios');
 const { generateResponse } = require('./openAI');
 const { generateTest } = require('./openAITest');
 const { runReplicate } = require('./musicgen');
 
 const app = express();
-const port = process.env.PORT || 8000;
+const API_URL = process.env.API_URL || 'http://localhost:5000';
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -56,7 +56,8 @@ app.post('/getMusic', async (req, res) => {
 // New route to forward requests to the Flask server
 app.post('/processVideo', async (req, res) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/process', req.body);  // Ensure this URL matches your Flask server URL
+    //const response = await axios.post('http://localhost:5000/api/process', req.body);  // Ensure this URL matches your Flask server URL
+    const response = await axios.post(`${API_URL}/process`, req.body); 
     console.log('Response from Flask server:', response.data);  // Log the response data to the console
     res.json(response.data);
   } catch (error) {
@@ -67,7 +68,8 @@ app.post('/processVideo', async (req, res) => {
 
 app.post('/stopVideoProcessing', async (req, res) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/stop');  // Ensure this URL matches your Flask server URL for stopping
+    //const response = await axios.post('http://localhost:5000/api/stop');  // Ensure this URL matches your Flask server URL for stopping
+    const response = await axios.post(`${API_URL}/stop`);
     console.log('Response from Flask server (stop):', response.data);  // Log the response data to the console
     res.json(response.data);
   } catch (error) {
@@ -76,6 +78,6 @@ app.post('/stopVideoProcessing', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
