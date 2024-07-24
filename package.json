@@ -1,0 +1,7 @@
+{
+    "name": "my-project",
+    "version": "1.0.0",
+    "scripts": {
+      "heroku-postbuild": "cd client && npm install && npm run build && cd ../server && npm install && cd ../python-backend && pip install -r requirements.txt"
+    }
+  }
