@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+import axiosInstance from '../api/axiosInstance.js';
 import './App.css';
 import Header from './header';
 import Test from './test';
@@ -72,8 +73,9 @@ function App() {
     if (socketRef.current) {
       socketRef.current.disconnect();
     }
-    socketRef.current = io('http://localhost:5000'); // Connect to the WebSocket server
-
+    //socketRef.current = io('http://localhost:5000'); // Connect to the WebSocket server
+    const socketUrl = process.env.REACT_APP_SOCKET_URL;
+    socketRef.current = io(socketUrl);
     // Listen for disparity updates
     socketRef.current.on('video_processed', (data) => {
       setDisparity(data.disparity);
@@ -142,14 +144,16 @@ function App() {
     setPage('loading');
 
     try {
-      const response = await axios.post('http://localhost:8000/getResponses', { diaries });
+      //const response = await axios.post('http://localhost:8000/getResponses', { diaries });
+      const response = await axiosInstance.post('/getResponses', { diaries });
       setResponses(response.data);
       setLoading(false);
       setPage('results');
 
       // Trigger music generation after displaying initial responses
       setMusicLoading(true);
-      const musicResponse = await axios.post('http://localhost:8000/getMusic', { responses: response.data });
+      //const musicResponse = await axios.post('http://localhost:8000/getMusic', { responses: response.data });
+      const musicResponse = await axiosInstance.post('/getMusic', { responses: response.data });
       setMusicResponses(musicResponse.data);
       setMusicLoading(false);
     } catch (error) {
@@ -173,7 +177,8 @@ function App() {
 
     try {
       const feeling = responses[currentIndex].emotion;
-      const response = await axios.post('http://localhost:8000/processVideo', { feeling });
+      //const response = await axios.post('http://localhost:8000/processVideo', { feeling });
+      const response = await axiosInstance.post('/processVideo', { feeling });
       console.log('Response from processVideo API:', response.data);
     } catch (error) {
       console.error('Error while calling processVideo API:', error.message);
@@ -218,7 +223,8 @@ function App() {
   const handleStopTraining = () => {
     setShowTraining(false);
     setPage('final-result');
-    axios.post('http://localhost:8000/stopVideoProcessing')
+    //axios.post('http://localhost:8000/stopVideoProcessing')
+    axiosInstance.post('/stopVideoProcessing')
     .then(response => {
       console.log('Video processing stopped:', response.data);
     })
@@ -251,7 +257,8 @@ function App() {
       audio.play();
       const sendDataToServer = async (data) => {
         try {
-          const response = await axios.post('http://localhost:8000/processVideo', data);
+          //const response = await axiosInstance.post('http://localhost:8000/processVideo', data);
+          const response = await axiosInstance.post('/processVideo', data);
           console.log(response.data);
         } catch (error) {
           console.error('Error sending data:', error);
