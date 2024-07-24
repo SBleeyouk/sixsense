@@ -20,5 +20,8 @@
     "package.json": "^2.0.1",
     "replicate": "^0.29.1",
     "yarn": "^1.22.22"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
