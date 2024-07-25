@@ -146,7 +146,11 @@ function App() {
     try {
       //const response = await axios.post('http://localhost:8000/getResponses', { diaries });
       const response = await axiosInstance.post('/getResponses', { diaries });
-      setResponses(response.data);
+      if (Array.isArray(response.data)) {
+        setResponses(response.data);
+      } else {
+        throw new Error('API response is not an array');
+      }
       setLoading(false);
       setPage('results');
 
@@ -400,34 +404,38 @@ function App() {
           <div className="carousel-content">
 
           <div className='carousel-box'>
-          {Array.isArray(responses) && responses.length > 1 && (
-            <div className="carousel-preview left">
-              <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
-            </div>
-          )}
+            {Array.isArray(responses) && responses.length > 1 && (
+              <div className="carousel-preview left">
+                <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
+              </div>
+            )}
 
             
             <div className="carousel-image">
               <img src={responses[currentIndex].imageUrl} alt="Generated" />
             </div>
-            {Array.isArray(responses) && responses.length > 2 && (
-              <div className="carousel-preview right">
-                <img src={responses[(currentIndex + 1) % responses.length].imageUrl} alt="Next" />
-              </div>
-            )}
+              {Array.isArray(responses) && responses.length > 2 && (
+                <div className="carousel-preview right">
+                  <img src={responses[(currentIndex + 1) % responses.length].imageUrl} alt="Next" />
+                </div>
+              )}
           </div>
           <div className="result-textarea">
             <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
             <div className="carousel-text">
               <div className="carousel-nav">
-              {Array.isArray(responses) && responses.length > 0 ? responses.map((response, index) => (
-                <button
-                  key={index}
-                  id="carousel-btn"
-                  className={index === currentIndex ? 'active' : ''}
-                  onClick={() => setCurrentIndex(index)}
-                />
-              )) : null}
+                {responses.length > 0 ? (
+                  responses.map((response, index) => (
+                    <button
+                      key={index}
+                      id="carousel-btn"
+                      className={index === currentIndex ? 'active' : ''}
+                      onClick={() => setCurrentIndex(index)}
+                    />
+                  ))
+                ) : (
+                  <p>No responses available</p>
+                )}
               </div>
               <p>{responses[currentIndex].summary}</p>
               <div className="feeling-tag">
