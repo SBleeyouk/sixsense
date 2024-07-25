@@ -5,10 +5,6 @@ from RealFaceVideo import RealFaceVideo  # Ensure this is your script with the n
 import os
 import traceback
 from threading import Event
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})

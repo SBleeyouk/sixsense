@@ -11,7 +11,7 @@ import buttonIcon from '../ui/arrow.svg';
 import buttonIcon2 from '../ui/complete.svg';
 import deleteIcon from '../ui/delete.svg';
 import AudioVisualizer from './audioVisualizer';
-import { io } from 'socket.io-client';  // Import socket.io-client
+import io from 'socket.io-client';
 import ReactPlayer from 'react-player';
 
 import c1 from '../ui/d1.png';
@@ -420,13 +420,14 @@ function App() {
             <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
             <div className="carousel-text">
               <div className="carousel-nav">
-                {responses.map((_, index) => (
-                  <button id="carousel-btn"
-                    key={index}
-                    className={index === currentIndex ? 'active' : ''}
-                    onClick={() => setCurrentIndex(index)}
-                  />
-                ))}
+              {responses && responses.length > 0 ? responses.map((response, index) => (
+                <button
+                  key={index}
+                  id="carousel-btn"
+                  className={index === currentIndex ? 'active' : ''}
+                  onClick={() => setCurrentIndex(index)}
+                />
+              )) : null}
               </div>
               <p>{responses[currentIndex].summary}</p>
               <div className="feeling-tag">
