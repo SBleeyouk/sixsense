@@ -13,7 +13,7 @@ cd ../server
 npm install
 
 # python-backend 폴더로 이동하여 Flask 서버 시작
-cd ../python-backend
+cd ../python_backend
 gunicorn app:app &
 
 # server 폴더로 이동하여 Node 서버 시작

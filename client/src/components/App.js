@@ -28,8 +28,9 @@ import c11 from '../ui/d1.png';
 import c12 from '../ui/main.png';
 import c13 from '../ui/all.png';
 import c14 from '../ui/all.png';
-
 import outcomeImg from '../ui/outcome.svg';
+
+let accumulatedTime = 0; // 전역 변수로 설정
 
 function App() {
   const [showTest, setShowTest] = useState(false);
@@ -48,6 +49,7 @@ function App() {
   const audioRef = useRef(null);
   const socketRef = useRef(null);
   const [disparity, setDisparity] = useState(0);
+  const [expression, setExpression] = useState('Neutral');
 
   const gap = 60; // 간격
   const screenWidth = window.innerWidth;
@@ -79,6 +81,7 @@ function App() {
     // Listen for disparity updates
     socketRef.current.on('video_processed', (data) => {
       setDisparity(data.disparity);
+      setExpression(data.expression);
     });
 
     return () => {
@@ -205,39 +208,31 @@ function App() {
   };
 
   useEffect(() => {
-    let timeout;
     let interval;
-    let startTime = null;
 
     if (disparity !== null) {
-      if (disparity < 30) {
-        if (startTime === null) {
-          startTime = new Date().getTime();
+      interval = setInterval(() => {
+        if (disparity < 15 && responses[currentIndex]?.emotion === expression) {
+          accumulatedTime += 1;
+          console.log(`Accumulated Time: ${accumulatedTime}`); // Log the accumulated time
         }
-
-        interval = setInterval(() => {
-          const currentTime = new Date().getTime();
-          if (currentTime - startTime >= 15000) {  // 10초 경과 확인
-            clearInterval(interval);
-            setPage('final-result');
-            if (socketRef.current) {
-              socketRef.current.emit('stop_video', { message: 'Stop video processing' });
-            }
+        if (accumulatedTime >= 100) {
+          clearInterval(interval);
+          setPage('final-result');
+          if (socketRef.current) {
+            socketRef.current.emit('stop_video', { message: 'Stop video processing' });
           }
-        }, 1000);  // 1초마다 체크
-      } else {
-        clearInterval(interval);
-        startTime = null;
-      }
+        }
+      }, 100);
     }
 
     return () => {
-      clearInterval(interval);
-      if (timeout) {
-        clearTimeout(timeout);
+      if (interval) {
+        clearInterval(interval);
       }
     };
-  }, [disparity]);
+  }, [disparity, expression, currentIndex, responses]);
+
 
   const handleStopTraining = () => {
     setShowTraining(false);
@@ -467,7 +462,7 @@ function App() {
         <p>{responses[currentIndex].summary} 이때 <span className="feeling">{responses[currentIndex].feeling}</span> 느낌이 들었겠다! <br /><br></br>함께 그 감정을 표현해볼까?</p>
         <video className='teacher-video' width='320' height='240' controls>
               <source src={videoUrl} type='video/mp4'></source>
-              이게 비디오임
+              <h1>비디오</h1>
             </video>
         <div className="music-playing">
           <FaceTracking 
