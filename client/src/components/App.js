@@ -40,6 +40,7 @@ function App() {
   const [showTraining, setShowTraining] = useState(false);
   const [today, setToday] = useState('');
   const [disparity, setDisparity] = useState(0);
+  const [expression, setExpression] = useState('Neutral');
   const [videoUrl, setVideoUrl] = useState('');
   const audioRef = useRef(null);
   const socketRef = useRef(null);  // Add ref for socket
@@ -65,11 +66,12 @@ function App() {
     if (socketRef.current) {
       socketRef.current.disconnect();
     }
-    socketRef.current = io('http://localhost:5000'); // Connect to the WebSocket server
+    socketRef.current = io('http://localhost:5002'); // Connect to the WebSocket server
 
     // Listen for disparity updates
     socketRef.current.on('video_processed', (data) => {
       setDisparity(data.disparity);
+      setExpression(data.expression);
     });
 
     return () => {
@@ -172,39 +174,31 @@ function App() {
   };
 
   useEffect(() => {
-    let timeout;
+    let accumulatedTime = 0;
     let interval;
-    let startTime = null;
 
     if (disparity !== null) {
-      if (disparity < 30) {
-        if (startTime === null) {
-          startTime = new Date().getTime();
+      interval = setInterval(() => {
+        if (disparity < 20 && responses[currentIndex]?.emotion === expression) {
+          accumulatedTime += 1;
         }
-
-        interval = setInterval(() => {
-          const currentTime = new Date().getTime();
-          if (currentTime - startTime >= 15000) {  // 10초 경과 확인
-            clearInterval(interval);
-            setPage('final-result');
-            if (socketRef.current) {
-              socketRef.current.emit('stop_video', { message: 'Stop video processing' });
-            }
+        if (accumulatedTime >= 5) {
+          clearInterval(interval);
+          setPage('final-result');
+          if (socketRef.current) {
+            socketRef.current.emit('stop_video', { message: 'Stop video processing' });
           }
-        }, 1000);  // 1초마다 체크
-      } else {
-        clearInterval(interval);
-        startTime = null;
-      }
+        }
+      }, 1000);
     }
 
     return () => {
-      clearInterval(interval);
-      if (timeout) {
-        clearTimeout(timeout);
+      if (interval) {
+        clearInterval(interval);
       }
     };
-  }, [disparity]);
+  }, [disparity, expression, currentIndex, responses]);
+
 
   const handleStopTraining = () => {
     setShowTraining(false);

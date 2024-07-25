@@ -11,7 +11,6 @@ import socketio
 
 class RealFaceVideo:
     def __init__(self, video_path, socketio, stop_event):
-        print("Initializing RealFaceVideo")  # 디버깅용 출력
         if not os.path.isabs(video_path):
             video_path = os.path.abspath(video_path)
         self.video_path = video_path
@@ -42,7 +41,7 @@ class RealFaceVideo:
         # Expression recognition model setup
         self.expr_model_path = '/Users/jy954/PycharmProjects/Contest/sixsense/python_backend/FaceExpressions/best_vit_model_New.pth'  # 학습된 모델 경로
         self.expr_model = self.load_expression_model(self.expr_model_path, self.device)
-        self.expressions = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
+        self.expressions = ['anger', 'disgust', 'fear', 'happiness', 'neutral', 'sadness', 'surprise']
 
         self.face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 

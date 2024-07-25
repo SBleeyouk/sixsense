@@ -44,7 +44,7 @@ app.post('/getMusic', async (req, res) => {
 // New route to forward requests to the Flask server
 app.post('/processVideo', async (req, res) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/process', req.body);  // Ensure this URL matches your Flask server URL
+    const response = await axios.post('http://localhost:5002/api/process', req.body);  // Ensure this URL matches your Flask server URL
     console.log('Response from Flask server:', response.data);  // Log the response data to the console
     res.json(response.data);
   } catch (error) {
@@ -55,7 +55,7 @@ app.post('/processVideo', async (req, res) => {
 
 app.post('/stopVideoProcessing', async (req, res) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/stop');  // Ensure this URL matches your Flask server URL for stopping
+    const response = await axios.post('http://localhost:5002/api/stop');  // Ensure this URL matches your Flask server URL for stopping
     console.log('Response from Flask server (stop):', response.data);  // Log the response data to the console
     res.json(response.data);
   } catch (error) {

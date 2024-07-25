@@ -31,10 +31,11 @@ def process_data():
         return jsonify({"error": "No feeling provided"}), 400
 
     video_mapping = {
-        "happiness": "happiness.mp4",
         "anger": "anger.mp4",
-        "fear": "fear.mp4",
         "disgust": "disgust.mp4",
+        "fear": "fear.mp4",
+        "happiness": "happiness.mp4",
+        "neutral": "neutral.mp4",
         "sadness": "sadness.mp4",
         "surprise": "surprise.mp4"
     }
@@ -68,4 +69,4 @@ def stop_video_processing():
     return jsonify(response)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=5000)
+    socketio.run(app, debug=True, port=5002)
