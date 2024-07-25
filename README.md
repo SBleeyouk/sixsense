@@ -1,8 +1,8 @@
 # 무지개: 자폐 스펙트럼 아동이 감정의 스펙트럼을 배우도록!
 
 ## 1. Brief
-![Rainbow Project](http://img.youtube.com/vi/NLXxJixbfCA/0.jpg)](https://youtu.be/NLXxJixbfCA)
-**<무지개>**는 **생성형 AI 기반 음악 일기를 활용한 자폐 스펙트럼 아동 감정 훈련 시스템**입니다. 멀티모달 AI가 아동의 하루 일과를 기반으로 아동이 느낀 감정에 어울리는 그림과 음악을 생성합니다. Face Tracking과 Eye Tracking 기술을 통해 아동은 3D 캐릭터와의 인터렉션을 통해 자신의 하루 감정에 어울리는 표정 연습과 감정어 학습을 진행합니다. 매주 퀴즈와 데이터 추적을 통해 다양한 지표로 감정 훈련 진척도를 평가하며 훈련에 필요한 콘텐츠를 추천합니다.
+[![Rainbow Project](http://img.youtube.com/vi/NLXxJixbfCA/0.jpg)](https://youtu.be/NLXxJixbfCA)
+**<무지개>**는 **생성형 AI 기반 음악 일기를 활용한 자폐 스펙트럼 아동 감정 훈련 시스템**입니다. 멀티모달 AI가 아동의 하루 일과를 기반으로 아동이 느낀 감정에 어울리는 그림과 음악을 생성합니다. Face Tracking과 Eye Tracking 기술을 통해 아동은 3D 캐릭터와의 인터랙션을 통해 자신의 하루 감정에 어울리는 표정 연습과 감정어 학습을 진행합니다. 매주 퀴즈와 데이터 추적을 통해 다양한 지표로 감정 훈련 진척도를 평가하며 훈련에 필요한 콘텐츠를 추천합니다.
 
 - **Keywords:** Multi-modal AI, Accessibility, Safety, Human Centered AI
 
