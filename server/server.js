@@ -8,7 +8,7 @@ const { generateTest } = require('./openAITest');
 const { runReplicate } = require('./musicgen');
 
 const app = express();
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+//const API_URL = process.env.API_URL || 'http://localhost:5000';
 
 app.use(cors({
   origin: '*',
@@ -62,8 +62,8 @@ app.post('/getMusic', async (req, res) => {
 // New route to forward requests to the Flask server
 app.post('/processVideo', async (req, res) => {
   try {
-    //const response = await axios.post('http://localhost:5000/api/process', req.body);  // Ensure this URL matches your Flask server URL
-    const response = await axios.post(`${API_URL}/process`, req.body); 
+    const response = await axios.post('http://localhost:5000/process', req.body);  // Ensure this URL matches your Flask server URL
+    //const response = await axios.post(`${API_URL}/process`, req.body); 
     console.log('Response from Flask server:', response.data);  // Log the response data to the console
     res.json(response.data);
   } catch (error) {
@@ -74,8 +74,8 @@ app.post('/processVideo', async (req, res) => {
 
 app.post('/stopVideoProcessing', async (req, res) => {
   try {
-    //const response = await axios.post('http://localhost:5000/api/stop');  // Ensure this URL matches your Flask server URL for stopping
-    const response = await axios.post(`${API_URL}/stop`);
+    const response = await axios.post('http://localhost:5000/stop');  // Ensure this URL matches your Flask server URL for stopping
+    //const response = await axios.post(`${API_URL}/stop`);
     console.log('Response from Flask server (stop):', response.data);  // Log the response data to the console
     res.json(response.data);
   } catch (error) {
