@@ -12,10 +12,11 @@ const API_URL = process.env.API_URL || 'http://localhost:5000';
 
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST']
+  methods: ['GET', 'POST', 'OPTIONS']
 }));
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.options('*', cors());
 
 app.post('/getResponses', async (req, res) => {
   const { diaries } = req.body;
