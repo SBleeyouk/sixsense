@@ -28,7 +28,7 @@
 1. `git clone https://github.com/SBleeyouk/sixsense.git`
 2. `cd sixsense`
 3. `chmod +x setup.sh`
-4. `./setup.sh`
+4. `./setup.sh` 하고 셋업이 진행되길 대기하신 후, 콘솔에 Setup complete. Servers are running.이 뜨면 완료됩니다.
 
 현재 배포를 준비 중입니다.
 

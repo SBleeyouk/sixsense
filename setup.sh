@@ -7,7 +7,7 @@ source venv/bin/activate
 
 # Flask 종속성 설치
 echo "Installing Flask dependencies..."
-pip install -r python_backend/requirements.txt
+pip install -r requirements.txt
 
 # Node.js 종속성 설치
 echo "Installing Node.js dependencies..."
@@ -25,7 +25,8 @@ echo "Starting Node.js server..."
 nohup node server.js &
 
 cd ../client
-echo "Starting React development server..."
+npm install
+echo "Starting React server..."
 npm run dev
 
 echo "Setup complete. Servers are running."
