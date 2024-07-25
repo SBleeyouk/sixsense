@@ -1,0 +1,288 @@
+Server is running on port 8000
+Output shape: torch.Size([1, 7]), device: cpu
+Traceback (most recent call last):
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/../python_backend/app.py", line 73, in <module>
+    socketio.run(app, debug=True, port=port)
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/venv/lib/python3.12/site-packages/flask_socketio/__init__.py", line 640, in run
+    raise RuntimeError('The Werkzeug web server is not '
+RuntimeError: The Werkzeug web server is not designed to run in production. Pass allow_unsafe_werkzeug=True to the run() method to disable this error.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+Output shape: torch.Size([1, 7]), device: cpu
+Traceback (most recent call last):
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/../python_backend/app.py", line 73, in <module>
+    socketio.run(app, debug=True, port=port)
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/venv/lib/python3.12/site-packages/flask_socketio/__init__.py", line 640, in run
+    raise RuntimeError('The Werkzeug web server is not '
+RuntimeError: The Werkzeug web server is not designed to run in production. Pass allow_unsafe_werkzeug=True to the run() method to disable this error.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+Output shape: torch.Size([1, 7]), device: cpu
+Traceback (most recent call last):
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/../python_backend/app.py", line 73, in <module>
+    socketio.run(app, debug=True, port=port)
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/venv/lib/python3.12/site-packages/flask_socketio/__init__.py", line 640, in run
+    raise RuntimeError('The Werkzeug web server is not '
+RuntimeError: The Werkzeug web server is not designed to run in production. Pass allow_unsafe_werkzeug=True to the run() method to disable this error.
+happiness
+Error while processing video: 
+Error while processing video: 
+https://replicate.delivery/yhqm/AVMF3q9fGk0qQKKJfYpNuXsuHa3fYc3IWUlRrPIdrFrNuLYmA/out.mp3
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+Output shape: torch.Size([1, 7]), device: cpu
+Traceback (most recent call last):
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/../python_backend/app.py", line 73, in <module>
+    socketio.run(app, debug=True, port=port)
+  File "/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/venv/lib/python3.12/site-packages/flask_socketio/__init__.py", line 640, in run
+    raise RuntimeError('The Werkzeug web server is not '
+RuntimeError: The Werkzeug web server is not designed to run in production. Pass allow_unsafe_werkzeug=True to the run() method to disable this error.
+happiness
+https://replicate.delivery/yhqm/UVqj2ruyRRJUMdsUYavoAbu1z9LzKXYPYSc72wegsST69CmJA/out.mp3
+Error while processing video: 
+Error while processing video: 
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+happiness
+Error while processing video: 
+Error while processing video: 
+https://replicate.delivery/yhqm/fWLoXTdfULtSg0C5TaBRINWfmCcIAd6CugDje2dB3g00AYwMB/out.mp3
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+happiness
+Error while processing video: Request failed with status code 500
+Error while processing video: Request failed with status code 500
+https://replicate.delivery/yhqm/rRApxztBoSrsONJXUN7k3heB7IiuEfiVGVgvVMHRtHAOBGMTA/out.mp3
+discomfort
+Error while processing video: Request failed with status code 400
+Error while processing video: Request failed with status code 400
+https://replicate.delivery/yhqm/WOWjLgziAarfNyWGweMqvv8zBaHcqlFeqfK9c67tAXwQbYwMB/out.mp3
+happiness
+https://replicate.delivery/yhqm/2H12Nrsx9FrfLy84xCtr0tIPrLMVsmL8M1WEOYhXNu13DDmJA/out.mp3
+Error while processing video: Request failed with status code 500
+Error while processing video: Request failed with status code 500
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+happiness
+Error while processing video: Request failed with status code 500
+Error while processing video: Request failed with status code 500
+https://replicate.delivery/yhqm/zxeJVRw2GVw8HiLJNrhR05wf5TXaD09PlpIxSi1NskPjPGMTA/out.mp3
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::8000
+    at Server.setupListenHandle [as _listen2] (node:net:1897:16)
+    at listenInCluster (node:net:1945:12)
+    at Server.listen (node:net:2037:7)
+    at Function.listen (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/blanky/Desktop/Univ/2024-1/AI융합캡스톤디자인과창업/sixsense-rainbow/backup/sixsense-heroku/server/server.js:87:5)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1924:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 8000
+}
+
+Node.js v20.12.1
+happiness
+https://replicate.delivery/yhqm/JBnUpgXFdopONNqWXHe4Tzimt8u7eiFMZFYSAUURxRfckMYmA/out.mp3
+Error while processing video: socket hang up
+Error while processing video: socket hang up
+happiness
+Error while processing video: Request failed with status code 500
+Error while processing video: Request failed with status code 500
+https://replicate.delivery/yhqm/QyzkYrUJHN5VExb9EJrRcKluf6ZI7oSlB8mCa5ev7nXcUGMTA/out.mp3
+happiness
+Response from Flask server: { message: 'Video processing started' }
+Response from Flask server: { message: 'Video processing started' }
+https://replicate.delivery/yhqm/dZTQRvnlCT5WGNf4xEAbZoQ5fIHkCzdMV0dpbz6qsA7aVGMTA/out.mp3
+Error while processing video: Request failed with status code 400
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-79PNXpe8r6oDmxVlSDbneDm8.png?st=2024-07-25T19%3A20%3A09Z&se=2024-07-25T21%3A20%3A09Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A09%3A46Z&ske=2024-07-25T23%3A09%3A46Z&sks=b&skv=2023-11-03&sig=fvlPdPniGA%2BUaHUo3j/TLYlkCp2k3HRGfTjhjotiPpo%3D
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-XE9FS2HfIm5tDPzsS2ncHmtX.png?st=2024-07-25T19%3A20%3A18Z&se=2024-07-25T21%3A20%3A18Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A30%3A26Z&ske=2024-07-25T23%3A30%3A26Z&sks=b&skv=2023-11-03&sig=gZHfYnXGWK1X9tOHG2qNcW3/Y6ruUhAVLTAeUiaAILY%3D
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-31Q3GvZTw0EexTMXfBgZrVrL.png?st=2024-07-25T19%3A20%3A25Z&se=2024-07-25T21%3A20%3A25Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-25T17%3A42%3A01Z&ske=2024-07-26T17%3A42%3A01Z&sks=b&skv=2023-11-03&sig=qQIDsl/daob1Eu0xOHSdZ8czsDo0u3yCrtiwmeFhLC8%3D
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-gMC5JEzsiqZZBzYwxQycsJP9.png?st=2024-07-25T19%3A20%3A34Z&se=2024-07-25T21%3A20%3A34Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T21%3A51%3A12Z&ske=2024-07-25T21%3A51%3A12Z&sks=b&skv=2023-11-03&sig=HRpf0ZGeFeSeiSn5boij3j39sSIMpY71MA6P3wjjX6c%3D
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-vhwDcFfKspSSgxq1UFxIlKQE.png?st=2024-07-25T19%3A20%3A36Z&se=2024-07-25T21%3A20%3A36Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T21%3A49%3A37Z&ske=2024-07-25T21%3A49%3A37Z&sks=b&skv=2023-11-03&sig=SXwMZ4pLe1Xaq/ezsrb5Vfb/c6HS2FJs3macZDDWvg4%3D
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-9wkd2NbAHS0RQipIAqJplUPr.png?st=2024-07-25T19%3A20%3A43Z&se=2024-07-25T21%3A20%3A43Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A29%3A49Z&ske=2024-07-25T23%3A29%3A49Z&sks=b&skv=2023-11-03&sig=zYoR2GTA5CBgsu9Tj6j/a87CeMyc5wrqd1cm1LsJAS0%3D
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-OSATmUWZHPEby1J6Oon8hLKu.png?st=2024-07-25T19%3A20%3A46Z&se=2024-07-25T21%3A20%3A46Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T21%3A49%3A07Z&ske=2024-07-25T21%3A49%3A07Z&sks=b&skv=2023-11-03&sig=UVZ7EM5mWvyLCdq%2B/fCTHmLQfrvlkCcZHULi5Bsm1b8%3D
+Generated images: [
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-79PNXpe8r6oDmxVlSDbneDm8.png?st=2024-07-25T19%3A20%3A09Z&se=2024-07-25T21%3A20%3A09Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A09%3A46Z&ske=2024-07-25T23%3A09%3A46Z&sks=b&skv=2023-11-03&sig=fvlPdPniGA%2BUaHUo3j/TLYlkCp2k3HRGfTjhjotiPpo%3D'
+  },
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-31Q3GvZTw0EexTMXfBgZrVrL.png?st=2024-07-25T19%3A20%3A25Z&se=2024-07-25T21%3A20%3A25Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-25T17%3A42%3A01Z&ske=2024-07-26T17%3A42%3A01Z&sks=b&skv=2023-11-03&sig=qQIDsl/daob1Eu0xOHSdZ8czsDo0u3yCrtiwmeFhLC8%3D'
+  },
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-vhwDcFfKspSSgxq1UFxIlKQE.png?st=2024-07-25T19%3A20%3A36Z&se=2024-07-25T21%3A20%3A36Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T21%3A49%3A37Z&ske=2024-07-25T21%3A49%3A37Z&sks=b&skv=2023-11-03&sig=SXwMZ4pLe1Xaq/ezsrb5Vfb/c6HS2FJs3macZDDWvg4%3D'
+  },
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-OSATmUWZHPEby1J6Oon8hLKu.png?st=2024-07-25T19%3A20%3A46Z&se=2024-07-25T21%3A20%3A46Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T21%3A49%3A07Z&ske=2024-07-25T21%3A49%3A07Z&sks=b&skv=2023-11-03&sig=UVZ7EM5mWvyLCdq%2B/fCTHmLQfrvlkCcZHULi5Bsm1b8%3D'
+  }
+]
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-99yQH90gA4KMq82HYJOZ9oO2.png?st=2024-07-25T19%3A20%3A56Z&se=2024-07-25T21%3A20%3A56Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A33%3A49Z&ske=2024-07-25T23%3A33%3A49Z&sks=b&skv=2023-11-03&sig=wh1msGiOaucnv3AbYxAMTo6JPCtNif8i0CnOaRMG0PE%3D
+Generated images: [
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-XE9FS2HfIm5tDPzsS2ncHmtX.png?st=2024-07-25T19%3A20%3A18Z&se=2024-07-25T21%3A20%3A18Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A30%3A26Z&ske=2024-07-25T23%3A30%3A26Z&sks=b&skv=2023-11-03&sig=gZHfYnXGWK1X9tOHG2qNcW3/Y6ruUhAVLTAeUiaAILY%3D'
+  },
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-gMC5JEzsiqZZBzYwxQycsJP9.png?st=2024-07-25T19%3A20%3A34Z&se=2024-07-25T21%3A20%3A34Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T21%3A51%3A12Z&ske=2024-07-25T21%3A51%3A12Z&sks=b&skv=2023-11-03&sig=HRpf0ZGeFeSeiSn5boij3j39sSIMpY71MA6P3wjjX6c%3D'
+  },
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-9wkd2NbAHS0RQipIAqJplUPr.png?st=2024-07-25T19%3A20%3A43Z&se=2024-07-25T21%3A20%3A43Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A29%3A49Z&ske=2024-07-25T23%3A29%3A49Z&sks=b&skv=2023-11-03&sig=zYoR2GTA5CBgsu9Tj6j/a87CeMyc5wrqd1cm1LsJAS0%3D'
+  },
+  {
+    imageUrl: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-TiR5FLWTjPvbP3Un05Rj2OPc/user-7MyD9lnyjGMUYU5fdpstDFbs/img-99yQH90gA4KMq82HYJOZ9oO2.png?st=2024-07-25T19%3A20%3A56Z&se=2024-07-25T21%3A20%3A56Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-07-24T23%3A33%3A49Z&ske=2024-07-25T23%3A33%3A49Z&sks=b&skv=2023-11-03&sig=wh1msGiOaucnv3AbYxAMTo6JPCtNif8i0CnOaRMG0PE%3D'
+  }
+]

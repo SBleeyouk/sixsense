@@ -25,12 +25,12 @@ class RealFaceVideo:
 
         # HRNet model setup
         self.cfg = cfg
-        self.config_file = 'FaceLandmarks/experiments/wflw/face_alignment_wflw_hrnet_w18.yaml'
+        self.config_file = 'python_backend/FaceLandmarks/experiments/wflw/face_alignment_wflw_hrnet_w18.yaml'
         self.cfg.defrost()
         self.cfg.merge_from_file(self.config_file)
         self.cfg.freeze()
         self.model = get_face_alignment_net(self.cfg)
-        self.hrnet_checkpoint = 'FaceLandmarks/hrnetv2_trained/HR18-WFLW.pth'
+        self.hrnet_checkpoint = 'python_backend/FaceLandmarks/hrnetv2_trained/HR18-WFLW.pth'
 
         self.device = torch.device("cpu")
 
@@ -39,7 +39,7 @@ class RealFaceVideo:
         self.socketio.on('stop_video', self.stop_video)
 
         # Expression recognition model setup
-        self.expr_model_path = 'FaceExpressions/best_vit_model_New.pth'  # 학습된 모델 경로
+        self.expr_model_path = 'python_backend/FaceExpressions/best_vit_model_New.pth'  # 학습된 모델 경로
         self.expr_model = self.load_expression_model(self.expr_model_path, self.device)
         self.expressions = ['anger', 'disgust', 'fear', 'happiness', 'neutral', 'sadness', 'surprise']
 
@@ -186,7 +186,7 @@ class RealFaceVideo:
 
                 lx, ly, lw, lh = left_eye_rect
                 rx, ry, rw, rh = right_eye_rect
-                
+
                 left_gaze_direction = "Unknown"  # 초기화
                 right_gaze_direction = "Unknown"  # 초기화
 

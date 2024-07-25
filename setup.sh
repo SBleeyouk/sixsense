@@ -1,25 +1,31 @@
-#!/bin/sh
+#!/bin/bash
 
-# 루트 디렉토리에서 Python 패키지 설치
-pip3 install -r requirements.txt
+# Python 가상 환경 설정
+echo "Setting up Python virtual environment..."
+python3 -m venv venv
+source venv/bin/activate
 
-# client 폴더로 이동하여 React 앱 빌드
-cd client
+# Flask 종속성 설치
+echo "Installing Flask dependencies..."
+pip install -r python_backend/requirements.txt
+
+# Node.js 종속성 설치
+echo "Installing Node.js dependencies..."
+cd server
 npm install
-npm run build
+cd ..
 
-# server 폴더로 이동하여 의존성 설치
-cd ../server
-npm install
+# Flask 서버 실행
+echo "Starting Flask server..."
+nohup python python_backend/app.py &
 
-# python-backend 폴더로 이동하여 Flask 서버 시작
-cd ../python_backend
-gunicorn app:app &
+# Node.js 서버 실행
+cd server
+echo "Starting Node.js server..."
+nohup node server.js &
 
-# server 폴더로 이동하여 Node 서버 시작
-cd ../server
-npm start &
-
-# client 폴더로 이동하여 빌드된 React 앱 서빙
 cd ../client
-npx serve -s build
+echo "Starting React development server..."
+npm run dev
+
+echo "Setup complete. Servers are running."

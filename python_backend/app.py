@@ -69,5 +69,4 @@ def stop_video_processing():
     return jsonify(response)
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    socketio.run(app, debug=True, port=port)
+    socketio.run(app, debug=True, port=5000, allow_unsafe_werkzeug=True)

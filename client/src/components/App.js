@@ -75,9 +75,9 @@ function App() {
     if (socketRef.current) {
       socketRef.current.disconnect();
     }
-    //socketRef.current = io('http://localhost:5000'); // Connect to the WebSocket server
-    const socketUrl = process.env.REACT_APP_SOCKET_URL;
-    socketRef.current = io(socketUrl);
+    socketRef.current = io('http://localhost:5000'); // Connect to the WebSocket server
+    //const socketUrl = process.env.REACT_APP_SOCKET_URL;
+    //socketRef.current = io(socketUrl);
     // Listen for disparity updates
     socketRef.current.on('video_processed', (data) => {
       setDisparity(data.disparity);
