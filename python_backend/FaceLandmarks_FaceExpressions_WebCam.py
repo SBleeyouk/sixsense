@@ -186,6 +186,9 @@ class RealFaceVideo:
 
                 lx, ly, lw, lh = left_eye_rect
                 rx, ry, rw, rh = right_eye_rect
+                
+                left_gaze_direction = "Unknown"  # 초기화
+                right_gaze_direction = "Unknown"  # 초기화
 
                 if lw > 0 and lh > 0:
                     left_eye_roi = image[y + ly:y + ly + lh, x + lx:x + lx + lw]
