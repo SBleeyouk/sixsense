@@ -27,6 +27,8 @@ import c12 from '../ui/main.png';
 import c13 from '../ui/all.png';
 import c14 from '../ui/all.png';
 
+let accumulatedTime = 0; // 전역 변수로 설정
+
 function App() {
   const [diaryInput, setDiaryInput] = useState('');
   const [diaries, setDiaries] = useState([]);
@@ -174,13 +176,13 @@ function App() {
   };
 
   useEffect(() => {
-    let accumulatedTime = 0;
     let interval;
 
     if (disparity !== null) {
       interval = setInterval(() => {
         if (disparity < 20 && responses[currentIndex]?.emotion === expression) {
           accumulatedTime += 1;
+          console.log(`Accumulated Time: ${accumulatedTime}`); // Log the accumulated time
         }
         if (accumulatedTime >= 5) {
           clearInterval(interval);
