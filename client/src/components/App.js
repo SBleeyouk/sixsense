@@ -400,17 +400,17 @@ function App() {
           <div className="carousel-content">
 
           <div className='carousel-box'>
-            {responses.length > 1 && (
-              <div className="carousel-preview left">
-                <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
-              </div>
-            )}
+          {Array.isArray(responses) && responses.length > 1 && (
+            <div className="carousel-preview left">
+              <img src={responses[(currentIndex - 1 + responses.length) % responses.length].imageUrl} alt="Previous" />
+            </div>
+          )}
 
             
             <div className="carousel-image">
               <img src={responses[currentIndex].imageUrl} alt="Generated" />
             </div>
-            {responses.length > 2 && (
+            {Array.isArray(responses) && responses.length > 2 && (
               <div className="carousel-preview right">
                 <img src={responses[(currentIndex + 1) % responses.length].imageUrl} alt="Next" />
               </div>
@@ -420,7 +420,7 @@ function App() {
             <button className="carousel-arrow left" onClick={handlePrevImage}>❮</button>
             <div className="carousel-text">
               <div className="carousel-nav">
-              {responses && responses.length > 0 ? responses.map((response, index) => (
+              {Array.isArray(responses) && responses.length > 0 ? responses.map((response, index) => (
                 <button
                   key={index}
                   id="carousel-btn"
@@ -479,13 +479,13 @@ function App() {
           </div>
           <button className="carousel-arrow right" onClick={handleNextImage}>❯</button>
           <div className="carousel-nav">
-            {responses.map((_, index) => (
-              <button
-                key={index}
-                className={index === currentIndex ? 'active' : ''}
-                onClick={() => setCurrentIndex(index)}
-              />
-            ))}
+          {Array.isArray(responses) && responses.map((response, index) => (
+            <button
+              key={index}
+              className={index === currentIndex ? 'active' : ''}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
           </div>
         </div>
       )}
