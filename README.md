@@ -3,7 +3,10 @@
 ## 1. Brief
 [![Rainbow Project](http://img.youtube.com/vi/NLXxJixbfCA/0.jpg)](https://youtu.be/NLXxJixbfCA)
 
-**<무지개>**는 **생성형 AI 기반 음악 일기를 활용한 자폐 스펙트럼 아동 감정 훈련 시스템**입니다. 멀티모달 AI가 아동의 하루 일과를 기반으로 아동이 느낀 감정에 어울리는 그림과 음악을 생성합니다. Face Tracking과 Eye Tracking 기술을 통해 아동은 3D 캐릭터와의 인터랙션을 통해 자신의 하루 감정에 어울리는 표정 연습과 감정어 학습을 진행합니다. 매주 퀴즈와 데이터 추적을 통해 다양한 지표로 감정 훈련 진척도를 평가하며 훈련에 필요한 콘텐츠를 추천합니다.
+<무지개>는 **생성형 AI 기반 음악 일기를 활용한 자폐 스펙트럼 아동 감정 훈련 시스템**입니다. 
+- 멀티모달 AI가 아동의 하루 일과를 기반으로 아동이 느낀 감정에 어울리는 그림과 음악을 생성합니다. 
+- Face Tracking과 Eye Tracking 기술을 통해 아동은 3D 캐릭터와의 인터랙션을 통해 자신의 하루 감정에 어울리는 표정 연습과 감정어 학습을 진행합니다. 
+- 매주 퀴즈와 데이터 추적을 통해 다양한 지표로 감정 훈련 진척도를 평가하며 훈련에 필요한 콘텐츠를 추천합니다.
 
 - **Keywords:** Multi-modal AI, Accessibility, Safety, Human Centered AI
 
@@ -30,18 +33,19 @@
 현재 배포를 준비 중입니다.
 
 ## 4. Future Works: What's Next?
-1. 추가적인 감정 훈련 콘텐츠 개발
-2. 모바일 앱 개발 및 배포
-3. 사용자 피드백 기반 기능 개선
+1. 모바일 앱 개발 및 배포
+2. 전문가 자문 기반 학습장애, 지적 장애 아동 대상 추가적인 감정 훈련 콘텐츠 개발 및 추천 콘텐츠 제작
+3. LG 개인용 로봇과 감정 교감 연구 진행
 
-## References
-1. Folstein, S. (2012). "Autistic children and emotion regulation."
-2. 서울 밀알학교 교육봉사자 인터뷰 (2023).
-3. 치료사 인터뷰 (2023).
-
-## Memo / Trial & Error
-- 다양한 AI 모델 비교 테스트
-- 데이터 수집 및 정제 과정에서 발생한 문제들
+## 5. References
+1. 사용 기술
+   - [openAI GPT-4-turbo API](https://openai.com/index/openai-api/)
+   - [openAI Dalle-3 API](https://openai.com/index/openai-api/)
+   - [Meta musicgen API](https://replicate.com/meta/musicgen)
+2. 사용 데이터
+   - [HFLW DataSet](https://wywu.github.io/projects/LAB/WFLW.html)
+   - [Music and emotion stimulus sets consisting of film soundtracks](https://osf.io/p6vkg/?view_only=)
+   - [자폐아동의 심리적 상태에 대한 표현어휘](https://www.e-csd.org/upload/6(2).6.pdf)
 
 ---
 
