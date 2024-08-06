@@ -24,9 +24,8 @@
 - **개별화된 훈련:** 생성형 인공지능을 기반으로 아동의 일주일 일기에 기반한 평가 및 데이터 추적, 학습 추천을 제공합니다.
 
 ## 3. Setup
-로컬 폴더를 만들어 터미널 창에서 진행:
-1. `git clone https://github.com/SBleeyouk/sixsense.git`
-2. `cd sixsense`
+1. [zip 파일을 다운받아주세요.](https://drive.google.com/file/d/1WeQenIXL6QYVahNgIQpHhiYWO-hyxdKD/view?usp=sharing)
+2. 해당 zip 파일을 압축해제한 후, vscode의 터미널 창을 키고 아래 명령어를 입력해주세요:
 3. `chmod +x setup.sh`
 4. `./setup.sh` 하고 셋업이 진행되길 대기하신 후, 콘솔에 Setup complete. Servers are running.이 뜨면 완료됩니다.
 
